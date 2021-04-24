@@ -4,7 +4,15 @@ import './App.css';
 import { update } from '../store/interactions'
 import { connect } from 'react-redux'
 import Navbar from './Navbar'
+import {Color} from '../Color'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Main from './Main'
+import UniswapApp from './components/UniswapApp'
+import Home from './components/pages/Home'
+import Services from './components/pages/Services'
+import Products from './components/pages/Products'
+import SignUp from './components/pages/SignUp'
+
 
 class App extends Component {
 
@@ -118,8 +126,20 @@ class App extends Component {
         </nav>
        
         <div className="text-monospace text-center bgDark7">
+        
+         <Router>
         <Navbar />
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path='/services' component={Services} />
+          <Route path='/products' component={Products} />
+          <Route path='/sign-up' component={SignUp} />
+        </Switch>
+      </Router>
         <Main />
+
+        <UniswapApp />
+     
       </div>
        
         <div className="container-fluid mt-5">

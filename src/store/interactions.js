@@ -1,5 +1,5 @@
-import { nftsData } from '../backEnd/scripts/nftsData.js'
-import Contract from '../backEnd/abis/NFT.json'
+import { nftsData } from '../scripts/nftsData.js'
+import Contract from '../abis/NFT.json'
 import Web3 from 'web3'
 import {
   web3Loaded,

@@ -5,7 +5,7 @@ require('dotenv').config();
 
 
 const HDWalletProvider = require('truffle-hdwallet-provider-privkey');
-const privateKeys = process.env.PRIVATE_KEYS || ""
+const ROPSTEN_PRIVATE_KEY = process.env.ROPSTEN_PRIVATE_KEY || "2971e2b6e498051cf1dbbfd5406e632c60cabaffe7cfce11e51283e388a434fe";
 
 module.exports = {
   networks: {
@@ -18,7 +18,7 @@ module.exports = {
       provider: function() {
         return new HDWalletProvider(
           privateKeys.split(','), // Array of account private keys
-          `https://kovan.infura.io/v3/${process.env.INFURA_API_KEY}`// Url to an Ethereum Node
+          `https://ropsten.infura.io/v3/de92f2791cfa4b2bb36aa86ae5b78137`// Url to an Ethereum Node
         )
       },
       gas: 5000000,
@@ -29,7 +29,7 @@ module.exports = {
       provider: function() {
         return new HDWalletProvider(
           privateKeys.split(','), // Array of account private keys
-          `https://main.infura.io/v3/${process.env.INFURA_API_KEY}`// Url to an Ethereum Node
+          `https://ropsten.infura.io/v3/de92f2791cfa4b2bb36aa86ae5b78137`// Url to an Ethereum Node
         )
       },
       gas: 5000000,
@@ -40,7 +40,7 @@ module.exports = {
       provider: function() {
         return new HDWalletProvider(
           privateKeys.split(','), // Array of account private keys
-          `https://rinkeby.infura.io/v3/${process.env.INFURA_API_KEY}`// Url to an Ethereum Node
+          `https://ropsten.infura.io/v3/de92f2791cfa4b2bb36aa86ae5b78137`// Url to an Ethereum Node
         )
       },
       gas: 5000000,
