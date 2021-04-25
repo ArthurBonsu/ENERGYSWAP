@@ -47,7 +47,7 @@ const Body = styled.div`
   /* margin: 0 1.25rem 1.25rem 1.25rem; */
 `
 
-export default function App() {
+export default function UniswapApp1() {
   const params = getAllQueryParams()
   return (
     <>

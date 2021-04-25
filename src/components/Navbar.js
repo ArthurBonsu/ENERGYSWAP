@@ -7,6 +7,15 @@ import { Button } from './Button'
 import { Link } from 'react-router-dom'
 import {MenuItems} from "./MenuItems"
 import './Navbar.css'
+
+// ITEMS TO BE FOUND ON THE NAV-BAR
+import Home from './components/pages/Home'
+import Services from './components/pages/Services'
+import Products from './components/pages/Products'
+import SignUp from './components/pages/SignUp'
+import Uniswap from './components/pages/UniswapApp1'
+import NFTMain from './NFTMain'
+
 import {
   accountSelector,
   balanceSelector,
@@ -16,6 +25,13 @@ import {
 import './Style.css'
 
 class Navbar extends Component {
+
+   constructor(props) {
+    super(props)
+    this.state = {
+     
+    }
+  }
 
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
@@ -37,64 +53,17 @@ class Navbar extends Component {
 
   window.addEventListener('resize', showButton);
 
-
-
-  render() {
-    return (
-      <nav className='navbar'>
-        <div className='navbar-container'>
-          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            TRVL
-            <i class='fab fa-typo3' />
-          </Link>
-          <div className='menu-icon' onClick={handleClick}>
-            <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
-          </div>
-          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-            <li className='nav-item'>
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                Home
-              </Link>
-            </li>
-            <li className='nav-item'>
-              <Link
-                to='/services'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Services
-              </Link>
-            </li>
-            <li className='nav-item'>
-              <Link
-                to='/products'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Products
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                to='/sign-up'
-                className='nav-links-mobile'
-                onClick={closeMobileMenu}
-              >
-                Sign Up
-              </Link>
-            </li>
-          </ul>
-          {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
-        </div>
-       
-                   <div className= "menu-icon" oncClick={this.handleClick}>
+// THIS ISS ANOTHER WAY TO SET THE HANDLER FOR THE NAVIGATION BAR AND DTHEN SET THE NAVIGATIONAL BUTTON ON OR OFF
+// THIS IS ALSO ANOTHER WAY OF UTILIZING ROUTING BY PULLING THE CONTENTS FROM THE MENU LIST
+/*
+  <div className= "menu-icon" oncClick={this.handleClick}>
                       <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}> </i>
                      <ul>  
                         
                        </div> 
 
-                       
+                       // WE CAN SEE  THE INFORMATION PULLED FROM THE MENU LIST
+
                      <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}> 
                        {MenuItems.map((item, index) => {
                         return (<li key={index}> 
@@ -103,10 +72,71 @@ class Navbar extends Component {
                         })
                         }
                        
-                        </ul>                   
-                        
+                        </ul>  
+                        */
 
-        {this.props.account ? (
+  render() {
+    return (
+      <nav className='navbar'>
+        <div className='navbar-container'>
+          <Link to='/NFTMain' className='navbar-logo' onClick={closeMobileMenu}>
+            Nfts
+            <i class='fab fa-typo3' />
+          </Link>
+          <div className='menu-icon' onClick={handleClick}>
+            <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+          </div>
+          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+            <li className='nav-item'>
+              <Link to='./components/pages/Home' className='nav-links' onClick={closeMobileMenu}>
+               Home
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='./components/pages/Services'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Services
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='./components/pages/Products'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Products
+              </Link>
+            </li>
+              <li className='nav-item'>
+              <Link
+                to='./components/pages/Uniswap1'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Uniswap
+              </Link>
+            </li>
+             
+            <li>
+              <Link
+                to='components/pages/Sign-up'
+                className='nav-links-mobile'
+                onClick={closeMobileMenu}
+              >
+                Sign Up
+              </Link>
+            </li>
+          </ul>
+        
+          {button && <Button onClick={SignUp} buttonStyle='btn--outline'>SIGN UP</Button>}
+        
+        </div>
+            
+                          
+          {this.props.account ? (
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav ml-auto">
               <div className="container">

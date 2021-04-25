@@ -9,6 +9,7 @@ import uniswaplogo from '../images/logo.png'
 import daiLogo from '../dai-logo.png'
 import Navbar from './Navbar'
 
+// This NFT CAN QUERY 
 
     export const client = new ApolloClient({
         link: new HttpLink({
@@ -75,19 +76,14 @@ class UniswapApp extends Component  {
 
     } 
 
-
-
-
  makethecountbig= () => {
     this.setState({
         
-        // css: makebig
-          
-        
+   // css: makebig
 
     })
 
-    } 
+} 
 
     render(){
        const  {token } = this.state

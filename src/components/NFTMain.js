@@ -1,9 +1,36 @@
 import ReactTypingEffect from 'react-typing-effect'
 import { buyNft } from '../store/interactions'
 import React, { Component } from 'react'
+import './App.css';
 import { connect } from 'react-redux'
 import Identicon from 'identicon.js'
 import Loading from './Loading'
+import Cards from './Cards';
+import ProjectMain from './ProjectMain'
+import Footer from '../Footer';
+import { update } from '../store/interactions'
+import Navbar from './Navbar'
+import {Color} from '../contracts/Color'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+
+
+//  Uniswap Your App
+// My Uniswap
+import UniswapApp from './UniswapApp'
+
+//Adding NFT and Uniswap Tab
+
+// Normal TopNavs
+
+// ITEMS TO BE FOUND ON THE NAV-BAR
+import Home from './components/pages/Home'
+import Services from './components/pages/Services'
+import Products from './components/pages/Products'
+import SignUp from './components/pages/SignUp'
+import Uniswap from './components/pages/UniswapApp1'
+// NFT Main is not found in the main component due to routing issues so we keep it here to be  safe
+import NFTMain from  './NFTMain'
+
 import {
   contractSelector,
   metadataSelector,
@@ -11,16 +38,48 @@ import {
   networkSelector,
 } from '../store/selectors'
 
-class Main extends Component {
+
+
+// NAVIGATIONALL BAR
+// CARDS AND FOOTERS
+// NFT MAIN PAGE WITH PICTURES
+class NFTMain extends Component {
+
+ constructor(props) {
+    super(props)
+    this.state = {
+      //We initially set an empty content for the account
+      account: '',
+      contract: null,
+      totalSupply: 0,
+      colors: []
+    }
+  }
+
   render() {
     try {
       return (
+        <Router>
+        <Navbar />
+        <Switch>
+          
+          <Route path='./components/pages/Home' exact component={Home} />
+          <Route path='./components/pages/UniswappApp1' exact component={UniswapApp1} />
+          <Route path='./components/pages/Services' component={Services} />
+          <Route path='./components/pages/Products' component={Products} />
+          <Route path='./components/pages/Signup' component={SignUp} />
+            <Route path='./NFTMain' component={NFTMain} />
+        </Switch>
+      </Router>
+
         <div className="Main">
           <div
             className="container-fluid mt-5"
             style={{ color: '#55FF55', backgroundColor: '#1D1D1D' }}
           >
             <br></br>
+
+        
             <div>
               <ReactTypingEffect
                 text={[
@@ -56,6 +115,8 @@ class Main extends Component {
               style={{ width: '1000px', height: '300px' }}
               alt="adam"
             />
+
+
             <div className="row">
               <main role="main" className="col-lg-12 d-flex text-center">
                 <div className="content mr-auto ml-auto">
@@ -247,6 +308,7 @@ class Main extends Component {
               <div> Wrong network </div>
             )}
           </footer>
+          
         </div>
       )
     } catch (e) {

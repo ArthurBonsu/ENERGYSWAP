@@ -1,3 +1,5 @@
+
+// We DIDNT'T USE THE MENUITEM APPROACH IN THE FULL WEBAPP
 const MenuItems = [
 {
     title: 'Home',

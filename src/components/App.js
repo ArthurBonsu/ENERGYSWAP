@@ -4,14 +4,26 @@ import './App.css';
 import { update } from '../store/interactions'
 import { connect } from 'react-redux'
 import Navbar from './Navbar'
-import {Color} from '../Color'
+import {Color} from '../contracts/Color'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Main from './Main'
-import UniswapApp from './components/UniswapApp'
+
+//  Uniswap Your App
+// My Uniswap
+import UniswapApp from './UniswapApp'
+
+//Adding NFT and Uniswap Tab
+
+// Normal TopNavs
+
+// ITEMS TO BE FOUND ON THE NAV-BAR
 import Home from './components/pages/Home'
 import Services from './components/pages/Services'
 import Products from './components/pages/Products'
 import SignUp from './components/pages/SignUp'
+import Uniswap from './components/pages/UniswapApp1'
+// NFT Main is not found in the main component due to routing issues so we keep it here to be  safe
+import NFTMain from  './NFTMain'
 
 
 class App extends Component {
@@ -130,15 +142,18 @@ class App extends Component {
          <Router>
         <Navbar />
         <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='/services' component={Services} />
-          <Route path='/products' component={Products} />
-          <Route path='/sign-up' component={SignUp} />
+          
+          <Route path='./components/pages/Home' exact component={Home} />
+          <Route path='./components/pages/UniswappApp1' exact component={UniswapApp1} />
+          <Route path='./components/pages/Services' component={Services} />
+          <Route path='./components/pages/Products' component={Products} />
+          <Route path='./components/pages/Signup' component={SignUp} />
+            <Route path='./NFTMain' component={NFTMain} />
         </Switch>
       </Router>
-        <Main />
+        <Home />
 
-        <UniswapApp />
+       
      
       </div>
        

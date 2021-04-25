@@ -6,8 +6,9 @@ import App from './components/App'
 import configureStore from './store/configureStore'
 import * as serviceWorker from './serviceWorker'
 import {ApolloProvider} from 'react-apollo'
-import {client} from './components/UniswapApp' 
-import UniswapApp from './components/UniswapApp'
+import {client} from './UniswapApp' 
+import UniswapApp from './UniswapApp'
+import UniswapApp1 from './components/pages/UniswapApp1'
 
 import ReactGA from 'react-ga'
 import { Web3ReactProvider, createWeb3ReactRoot } from '@web3-react/core'
@@ -59,6 +60,7 @@ function ContextProviders({ children }) {
         </TransactionContextProvider>
       </ApplicationContextProvider>
     </LocalStorageContextProvider>
+    
   )
 }
 
