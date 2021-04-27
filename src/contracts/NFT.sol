@@ -1,15 +1,16 @@
 // SPDX-License-Identifier: MIT
 //pragma solidity >=0.6.0 <0.8.0;
 pragma solidity ^0.5.5;
-import "@openzeppelin/contracts/access/Ownable.sol";
+
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721Enumerable.sol";
-// import "@openzeppelin/contracts/token/ERC721/IERC721Enumerable.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721MetadataMintable.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721Metadata.sol";
-                                             
+import "@openzeppelin/contracts/token/ERC721/ERC721MetadataMintable.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721Full.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract NFT is ERC721,ERC721Enumerable,ERC721MetadataMintable,  Ownable {
+
+contract  NFT is  ERC721Enumerable,ERC721Metadata, ERC721MetadataMintable, ERC721Full, Ownable {
   address payable public _owner;
   mapping (uint => bool) public sold;
   mapping (uint => uint) public price;
@@ -34,8 +35,8 @@ contract NFT is ERC721,ERC721Enumerable,ERC721MetadataMintable,  Ownable {
   function buy(uint _id) public payable {
     _validate(_id); //check req. for trade
     _trade(_id); //swap nft for eth
-    
-    emit Purchase(msg.sender, price[_id], _id, tokenURI(_id));
+  //   string memory _thetokenURI = tokenURI(_id);
+    emit Purchase(msg.sender, price[_id], _id, ERC721Metadata.tokenURI(_id));
   }
 
   function _validate(uint _id) public payable {
