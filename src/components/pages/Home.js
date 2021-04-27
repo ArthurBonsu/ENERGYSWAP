@@ -17,20 +17,7 @@ import NFTMain from  '../NFTMain'
 function Home() {
   return (
     <>
-     <Router>
-        <Navbar />
-        <Switch>
-          
-          <Route path='./components/pages/Home' exact component={Home} />
-          <Route path='./components/pages/UniswappApp1' exact component={UniswapApp1} />
-          <Route path='./components/pages/Services' component={Services} />
-          <Route path='./components/pages/Products' component={Products} />
-          <Route path='./components/pages/Signup' component={SignUp} />
-            <Route path='../NFTMain' component={NFTMain} />
-        </Switch>
-        
-        <Navbar />
-         <Router/>
+     
       <ProjectMain />
       
       <Cards />

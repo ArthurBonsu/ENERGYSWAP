@@ -19,6 +19,7 @@ contract NFT is ERC721,ERC721Enumerable,ERC721MetadataMintable,  Ownable {
   constructor() public{
   	_owner = msg.sender;
   }
+  
 
   function mint(string memory _tokenURI, uint _price) public onlyOwner returns (bool) {
     uint _tokenId = totalSupply() + 1;
