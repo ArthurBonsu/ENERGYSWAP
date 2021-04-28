@@ -23,7 +23,14 @@ contract  NFT is ERC721Full, Ownable {
   
 
   function mint(string memory _tokenURI, uint _price) public onlyOwner returns (bool) {
+    
+    //DIFFERENT FROM ERC20 , ERC721 IS RATHER INCREMENT 
+    // SO YOU DONT HAVE A SUPPLY OF LET'S SAY 200
+    //YOU HAVE A SUPPLY OF LET' SAY  0 AND YOU INCREMENT TO LET'S SAY 1
+    //TOTAL SUPPLY IS THEREFORE 1 AS THE TOKEN IS MINTED AND IDD
     uint _tokenId = totalSupply() + 1;
+   
+    //set the price of the token id
     price[_tokenId] = _price;
 
     _mint(address(this), _tokenId);
