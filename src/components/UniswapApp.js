@@ -9,6 +9,34 @@ import uniswaplogo from '../images/logo.png'
 import daiLogo from '../dai-logo.png'
 import Navbar from './Navbar'
 
+
+//We set our mainnet we would be working on 
+const {ChainId, Fetcher,WETH} = require('@uniswap/sdk');
+
+//We would also set the token address, sort of the token url
+const tokenAddress = '0x6B175474E89094C44Da98b954EedeAC495271d0F';
+
+const init = async()=> {
+ // We fetch the dai token with its address 
+const dai = await Fetcher.fetchTokenData(chainId, tokenAddress);
+
+// We get the eth tokens, this is called from the uniswap sdk like this
+const weth = WETH[chainId];
+
+// Now we pair the two tokens with the by fetching them together
+const pair = await Fetcher.fetchPairData(dai, weth);
+const route = new Route([pair], weth);
+console.log(route.midPrice.toSignificant(6));
+console.log(route.midPrice.toSignificant(6));
+}
+
+init();
+
+// Uniswap sdk 
+
+
+
+
 // This NFT CAN QUERY 
 
     export const client = new ApolloClient({
@@ -50,6 +78,7 @@ const daiTotalLiquidity = daiData && daiData.tokens[0].totalLiquidity
 const ethPriceInUSD = ethPriceData && ethPriceData.bundles[0].ethPrice
 
 
+
 class UniswapApp extends Component  {
     constructor(props){
        super (props)
@@ -73,22 +102,7 @@ const {loading: daiLoading, data:daiData} = useQuery(DAI_QUERY, {
    const daiTotalLiquidity = daiData && daiData.tokens[0].totalLiquidity
    const ethPriceInUSD = ethPriceData && ethPriceData.bundles[0].ethPrice
 
-    uniswapthetoken= () => {
-    this.setState(prevState => {
-       return {token:prevState.token + 1}
-
-    })
-
-    } 
-
- makethecountbig= () => {
-    this.setState({
-        
-   // css: makebig
-
-    })
-
-} 
+   
 
     render(){
        const  {token } = this.state

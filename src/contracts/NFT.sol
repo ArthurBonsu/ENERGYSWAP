@@ -53,8 +53,11 @@ contract  NFT is ERC721Full, Ownable {
   }
 
   function _trade(uint _id) public payable  {
+    
     // transfer from ERC721
   	_transferFrom(address(this), msg.sender, _id); //nft to user
+
+        
   	_owner.transfer(msg.value); //eth to owner
   	sold[_id] = true; //nft is sold
   }
