@@ -2,24 +2,24 @@
 //pragma solidity >=0.6.0 <0.8.0;
 pragma solidity ^0.5.5;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721Enumerable.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721Metadata.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721MetadataMintable.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721Full.sol";
+//import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+//import "@openzeppelin/contracts/token/ERC721/ERC721Enumerable.sol";
+//import "@openzeppelin/contracts/token/ERC721/ERC721Metadata.sol";
+//import "@openzeppelin/contracts/token/ERC721/ERC721MetadataMintable.sol";
+//import "@openzeppelin/contracts/token/ERC721/ERC721Full.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721Full.sol";
 
-
-contract  NFT is  ERC721Enumerable,ERC721Metadata, ERC721MetadataMintable, ERC721Full, Ownable {
+contract  NFT is ERC721Full, Ownable {
   address payable public _owner;
   mapping (uint => bool) public sold;
   mapping (uint => uint) public price;
 
   event Purchase(address owner, uint price, uint id, string uri);
    
-  constructor() public{
+  constructor() ERC721Full("ArthurNFT", "ANFT")  public{
   	_owner = msg.sender;
-  }
+  } 
   
 
   function mint(string memory _tokenURI, uint _price) public onlyOwner returns (bool) {
