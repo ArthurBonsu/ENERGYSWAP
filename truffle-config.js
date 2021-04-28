@@ -1,16 +1,15 @@
 
 
-import babel-register from 'babel-register'
-import  babel-polyfill from 'babel-polyfill'
-import dotenv  from 'dotenv'
-import HDWalletProvider from 'truffle-hdwallet-provider-privkey'
-//require('babel-register');
-//require('babel-polyfill');
-//require('dotenv').config();
-//const HDWalletProvider = require('truffle-hdwallet-provider-privkey');
 
 
-//const ROPSTEN_PRIVATE_KEY = process.env.ROPSTEN_PRIVATE_KEY || "2971e2b6e498051cf1dbbfd5406e632c60cabaffe7cfce11e51283e388a434fe";
+require('babel-register');
+require('babel-polyfill');
+require('dotenv').config();
+const HDWalletProvider = require('truffle-hdwallet-provider-privkey');
+
+
+const ROPSTEN_PRIVATE_KEY = process.env.ROPSTEN_PRIVATE_KEY || "2971e2b6e498051cf1dbbfd5406e632c60cabaffe7cfce11e51283e388a434fe";
+ /// TRUFFLE IS STILLL COMMON JS
 
 module.exports = {
   networks: {

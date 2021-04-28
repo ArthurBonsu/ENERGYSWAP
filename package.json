@@ -4,9 +4,10 @@
   "description": "An Ethereum Marketplace",
   "author": "gregory@dappuniversity.com",
   "homepage": "http://myname.github.io/myapp",
+  
   "dependencies": {
    
-
+   
     "@babel/polyfill": "^7.12.1",
     "@openzeppelin/contracts": "^2.3.0",
     "@truffle/hdwallet-provider": "1.2.2",
@@ -82,7 +83,14 @@
     "react-use-gesture": "^6.0.14",
     "styled-components": "^4.2.0"
   },
-     "type": "module",
+     "main": "./truffle-config.cjs",
+  "exports": {
+    "import": "/Users/peema/node_modules/original-require",
+    "require": "./truffle-config.cjs"
+  },
+  
+   
+    
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -124,10 +132,6 @@
     "es6": true
   },
 
-
-
-
-
   "devDependencies": {
     "@babel/preset-env": "^7.13.15",
     "@openzeppelin/test-helpers": "^0.5.10",
@@ -145,5 +149,6 @@
     "ts-node": "^8.5.4",
     "typescript": "^3.7.3",
      "presets": ["es2015"]
+     
   }
 }
