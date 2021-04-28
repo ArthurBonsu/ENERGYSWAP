@@ -8,10 +8,10 @@ import gql from 'graphql-tag'
 import uniswaplogo from '../images/logo.png'
 import daiLogo from '../dai-logo.png'
 import Navbar from './Navbar'
-
+import {ChainId, Fetcher,WETH} from '@uniswap/sdk';
 
 //We set our mainnet we would be working on 
-const {ChainId, Fetcher,WETH} = require('@uniswap/sdk');
+
 
 //We would also set the token address, sort of the token url
 const tokenAddress = '0x6B175474E89094C44Da98b954EedeAC495271d0F';
