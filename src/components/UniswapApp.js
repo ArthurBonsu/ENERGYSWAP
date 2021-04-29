@@ -153,6 +153,7 @@ const {loading: daiLoading, data:daiData} = useQuery(DAI_QUERY, {
 console.log(`Transaction hash': ${tx.hash}`);
 const receipt = await tx.wait();
 console.log(`Transaction was mined in block' ${receipt.blocknumber}`)
+
   
     }
 
