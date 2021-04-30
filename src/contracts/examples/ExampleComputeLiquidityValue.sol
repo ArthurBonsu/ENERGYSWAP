@@ -90,4 +90,6 @@ contract ExampleComputeLiquidityValue {
         uint gasAfter = gasleft();
         return gasBefore - gasAfter;
     }
+
+    
 }

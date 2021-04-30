@@ -13,8 +13,8 @@ import '../libraries/UniswapV2Library.sol';
 contract ExampleSwapToPrice {
     using SafeMath for uint256;
 
-    IUniswapV2Router01 public immutable router;
-    address public immutable factory;
+   // IUniswapV2Router01 public immutable router;
+  //  address public immutable factory;
 
   IUniswapV2Router01 public  router;
     address public  factory;
