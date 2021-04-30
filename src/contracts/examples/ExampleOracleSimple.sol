@@ -1,4 +1,4 @@
-pragma solidity =0.6.6;
+pragma solidity ^0.5.5;
 
 import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol';
 import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol';
@@ -14,9 +14,9 @@ contract ExampleOracleSimple {
 
     uint public constant PERIOD = 24 hours;
 
-    IUniswapV2Pair immutable pair;
-    address public immutable token0;
-    address public immutable token1;
+    IUniswapV2Pair  pair;
+    address public  token0;
+    address public  token1;
 
     uint    public price0CumulativeLast;
     uint    public price1CumulativeLast;

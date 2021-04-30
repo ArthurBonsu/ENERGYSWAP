@@ -1,4 +1,4 @@
-pragma solidity =0.6.6;
+pragma solidity ^0.5.5;
 
 import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol';
 import '@uniswap/lib/contracts/libraries/TransferHelper.sol';
@@ -14,8 +14,12 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
     //FULL IMPLEMENTATION IS 
 
     // HAS ITS OWN LOWER LEVEL IMPLEMENTATION
-    address public immutable override factory;
-    address public immutable override WETH;
+  //  address public immutable override factory;
+  //  address public immutable override WETH;
+
+   
+    address public   factory;
+    address public   WETH;
 
     modifier ensure(uint deadline) {
         require(deadline >= block.timestamp, 'UniswapV2Router: EXPIRED');
@@ -27,7 +31,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
         WETH = _WETH;
     }
 
-    receive() external payable {
+    function receive() external payable {
         assert(msg.sender == WETH); // only accept ETH via fallback from the WETH contract
     }
 

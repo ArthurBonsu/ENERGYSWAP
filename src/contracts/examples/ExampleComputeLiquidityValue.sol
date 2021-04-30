@@ -1,4 +1,4 @@
-pragma solidity =0.6.6;
+pragma solidity ^0.5.5;
 
 import '../libraries/UniswapV2LiquidityMathLibrary.sol';
 
@@ -7,7 +7,8 @@ contract ExampleComputeLiquidityValue {
     //CONTRACTS PICKS ITS VALUES FROM UNISWAPV2LIQUIDITYMATHSLIBRARY FOR ARBITRAGES
     using SafeMath for uint256;
 
-    address public immutable factory;
+    address public  factory;
+ //   address public immutable factory; 
 
     constructor(address factory_) public {
         factory = factory_;

@@ -1,4 +1,4 @@
-pragma solidity =0.6.6;
+pragma solidity ^0.5.5;
 
 import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Callee.sol';
 
@@ -10,9 +10,13 @@ import '../interfaces/IERC20.sol';
 import '../interfaces/IWETH.sol';
 
 contract ExampleFlashSwap is IUniswapV2Callee {
-    IUniswapV1Factory immutable factoryV1;
-    address immutable factory;
-    IWETH immutable WETH;
+//    IUniswapV1Factory immutable factoryV1;
+//    address immutable factory;
+ //   IWETH immutable WETH;
+
+     IUniswapV1Factory  factoryV1;
+     address factory;
+     IWETH  WETH;
 
 
 // 
@@ -25,10 +29,10 @@ contract ExampleFlashSwap is IUniswapV2Callee {
     // THIS DESCRIBES FLASHING BETWEEN VERSION 1 AND 2 
     // needs to accept ETH from any V1 exchange and WETH. ideally this could be enforced, as in the router,
     // but it's not possible because it requires a call to the v1 factory, which takes too much gas
-    receive() external payable {}
+    function receive() external payable {}
 
     // gets tokens/WETH via a V2 flash swap, swaps for the ETH/tokens on V1, repays V2, and keeps the rest!
-    function uniswapV2Call(address sender, uint amount0, uint amount1, bytes calldata data) external override {
+    function uniswapV2Call(address sender, uint amount0, uint amount1, bytes calldata data) external  {
         address[] memory path = new address[](2);
         uint amountToken;
         uint amountETH;

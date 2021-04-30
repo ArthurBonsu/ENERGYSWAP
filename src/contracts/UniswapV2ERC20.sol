@@ -1,12 +1,15 @@
 pragma solidity ^0.5.5;
 
-import '../libraries/SafeMath.sol';
+import './interfaces/IUniswapV2ERC20.sol';
+import './libraries/SafeMath.sol';
 
-contract ERC20 {
+contract UniswapV2ERC20 is IUniswapV2ERC20 {
+
+    // THIS PROVIDES THE TOTAL SUPPLY AND  MINTED TOKEN ADDRESS
     using SafeMath for uint;
-
-    string public constant name = 'Test Token';
-    string public constant symbol = 'TT';
+ 
+    string public constant name = 'Uniswap V2';
+    string public constant symbol = 'UNI-V2';
     uint8 public constant decimals = 18;
     uint  public totalSupply;
     mapping(address => uint) public balanceOf;
@@ -20,10 +23,10 @@ contract ERC20 {
     event Approval(address indexed owner, address indexed spender, uint value);
     event Transfer(address indexed from, address indexed to, uint value);
 
-    constructor(uint _totalSupply) public {
+    constructor() public {
         uint chainId;
         assembly {
-            chainId := chainid()
+            chainId := chainid
         }
         DOMAIN_SEPARATOR = keccak256(
             abi.encode(
@@ -34,9 +37,8 @@ contract ERC20 {
                 address(this)
             )
         );
-        _mint(msg.sender, _totalSupply);
     }
-
+          // MINTING AND PROVIDING TOTAL SUPPLY OF TOKEN MNTED
     function _mint(address to, uint value) internal {
         totalSupply = totalSupply.add(value);
         balanceOf[to] = balanceOf[to].add(value);
@@ -53,23 +55,24 @@ contract ERC20 {
         allowance[owner][spender] = value;
         emit Approval(owner, spender, value);
     }
-
+        // TRANSFER FUNDS FROM ONE ADDRESS TO THE OTHER
     function _transfer(address from, address to, uint value) private {
         balanceOf[from] = balanceOf[from].sub(value);
         balanceOf[to] = balanceOf[to].add(value);
         emit Transfer(from, to, value);
     }
-
+    
+     // APPROVAL BEFORE ALLOWING WITHDRAWAL
     function approve(address spender, uint value) external returns (bool) {
         _approve(msg.sender, spender, value);
         return true;
     }
-
+         // THE NORMAL PAYMENT TRANSFER TO ADDRESS
     function transfer(address to, uint value) external returns (bool) {
         _transfer(msg.sender, to, value);
         return true;
     }
-
+     // TRANSFER TO ROUTER FIRST
     function transferFrom(address from, address to, uint value) external returns (bool) {
         if (allowance[from][msg.sender] != uint(-1)) {
             allowance[from][msg.sender] = allowance[from][msg.sender].sub(value);
@@ -77,9 +80,9 @@ contract ERC20 {
         _transfer(from, to, value);
         return true;
     }
-
+             // SENDS PERMISSION TO ALLOW OR NOT TO DISALLOW
     function permit(address owner, address spender, uint value, uint deadline, uint8 v, bytes32 r, bytes32 s) external {
-        require(deadline >= block.timestamp, 'EXPIRED');
+        require(deadline >= block.timestamp, 'UniswapV2: EXPIRED');
         bytes32 digest = keccak256(
             abi.encodePacked(
                 '\x19\x01',
@@ -88,7 +91,7 @@ contract ERC20 {
             )
         );
         address recoveredAddress = ecrecover(digest, v, r, s);
-        require(recoveredAddress != address(0) && recoveredAddress == owner, 'INVALID_SIGNATURE');
+        require(recoveredAddress != address(0) && recoveredAddress == owner, 'UniswapV2: INVALID_SIGNATURE');
         _approve(owner, spender, value);
     }
 }

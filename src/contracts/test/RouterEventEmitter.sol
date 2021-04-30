@@ -1,11 +1,11 @@
-pragma solidity =0.6.6;
+pragma solidity ^0.5.5;
 
 import '../interfaces/IUniswapV2Router01.sol';
 
 contract RouterEventEmitter {
     event Amounts(uint[] amounts);
 
-    receive() external payable {}
+   function receive() external payable {}
 
     function swapExactTokensForTokens(
         address router,

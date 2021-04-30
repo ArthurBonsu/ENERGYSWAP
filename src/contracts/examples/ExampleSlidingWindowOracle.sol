@@ -1,4 +1,4 @@
-pragma solidity =0.6.6;
+pragma solidity ^0.5.5;
 
 import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol';
 import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol';
@@ -22,9 +22,9 @@ contract ExampleSlidingWindowOracle {
         uint price1Cumulative;
     }
 
-    address public immutable factory;
+    address public  factory;
     // the desired amount of time over which the moving average should be computed, e.g. 24 hours
-    uint public immutable windowSize;
+    uint public  windowSize;
     // the number of observations stored for each pair, i.e. how many price observations are stored for the window.
     // as granularity increases from 1, more frequent updates are needed, but moving averages become more precise.
     // averages are computed over intervals with sizes in the range:
@@ -32,9 +32,9 @@ contract ExampleSlidingWindowOracle {
     // e.g. if the window size is 24 hours, and the granularity is 24, the oracle will return the average price for
     //   the period:
     //   [now - [22 hours, 24 hours], now]
-    uint8 public immutable granularity;
+    uint8 public  granularity;
     // this is redundant with granularity and windowSize, but stored for gas savings & informational purposes.
-    uint public immutable periodSize;
+    uint public  periodSize;
 
     // mapping from pair address to a list of price observations of that pair
     mapping(address => Observation[]) public pairObservations;
@@ -67,6 +67,7 @@ contract ExampleSlidingWindowOracle {
     // update the cumulative price for the observation at the current timestamp. each observation is updated at most
     // once per epoch period.
     function update(address tokenA, address tokenB) external {
+        //This can also be used to get the token address from pair
         address pair = UniswapV2Library.pairFor(factory, tokenA, tokenB);
 
         // populate the array with empty observations (first call only)
