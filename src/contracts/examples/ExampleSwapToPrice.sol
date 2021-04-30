@@ -16,6 +16,8 @@ contract ExampleSwapToPrice {
     IUniswapV2Router01 public immutable router;
     address public immutable factory;
 
+  IUniswapV2Router01 public  router;
+    address public  factory;
     constructor(address factory_, IUniswapV2Router01 router_) public {
         factory = factory_;
         router = router_;

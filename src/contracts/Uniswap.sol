@@ -1,19 +1,21 @@
 pragma solidity ^0.5.5;
 
-import '../libraries/UniswapV2LiquidityMathLibrary.sol';
-import '../libraries/UniswapV2Library.sol';
-import '../libraries/UniswapV2OracleLibrary.sol';
-import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Callee.sol';
-
-import '../libraries/UniswapV2Library.sol';
-import '../interfaces/V1/IUniswapV1Factory.sol';
-import '../interfaces/V1/IUniswapV1Exchange.sol';
-import '../interfaces/IUniswapV2Router01.sol';
-import '../interfaces/IERC20.sol';
-import '../interfaces/IWETH.sol';
+import '../contracts/libraries/UniswapV2LiquidityMathLibrary.sol';
+import '../contracts/libraries/UniswapV2Library.sol';
+import '../contracts/libraries/UniswapV2OracleLibrary.sol';
+// I NEED TO GET THESE TWO INTERFACES TO WORK WITH V1
+import '../contracts/interfaces/IUniswapV2Callee.sol';
+import '../contracts/libraries/TransferHelper.sol';
 
 
+import '../contracts/interfaces/V1/IUniswapV1Factory.sol';
+import '../contracts/interfaces/V1/IUniswapV1Exchange.sol';
+import '../contracts/interfaces/IUniswapV2Router01.sol';
+import '../contracts/interfaces/IERC20.sol';
+import '../contracts/interfaces/IWETH.sol';
 
+
+/*
 interface IUniswap{
     function swapExactTokensForEth(
     uint amountIn,
@@ -117,11 +119,12 @@ interface IUniswap{
 
   // UniswapFactorymustbegiven here
 
+*/
   contract MyDefiProject is IERC20, IUniswapV2Callee, IWETH, IUniswapV2Router02  {
       
     address public factory;
-    factory = msg.sender;
-      
+    address public router;
+  
     address public token0;
     address public token1;
       
@@ -130,8 +133,30 @@ interface IUniswap{
     uint32  private blockTimestampLast;
    //SWAPPING TOKENS HERE
 
-     constructor (address _uniswap) IUniswapV1Factory(factory) { 
-       uniswap = IUniswap(_uniswap);
+    address public  router2;
+    address public  router1;
+    
+    modifier ensure(uint deadline) {
+        require(deadline >= block.timestamp, 'UniswapV2Router: EXPIRED');
+        _;
+    }
+     
+    
+    IUniswapV2Router01 public  router;
+    IUniswapV1Factory public swapfactory;
+    address public  factory;
+    constructor(address factory_, IUniswapV2Router01 router_) public {
+        factory = factory_;
+        router = router_;
+    }
+
+     constructor ( address _factory, address _router )  { 
+         _factory = msg.sender;
+         router1 =_router;
+    //   uniswap = IUniswap(_uniswap);
+     swapfactory  =  IUniswapV1Factory(_factory);
+     router =    IUniswapV2Router01(_router); 
+       WETH = IWETH(IUniswapV2Router01(_router).WETH());
      }
    
   
@@ -139,7 +164,7 @@ interface IUniswap{
 function fullswapprocessandswaptokenforeth(uint amountOut, address[] calldata path, address to, uint deadline)
         external
         virtual
-        override
+       
         payable
         ensure(deadline)
         returns (uint[] memory amounts)
@@ -155,28 +180,41 @@ function fullswapprocessandswaptokenforeth(uint amountOut, address[] calldata pa
         
 
         // address of the two tokens, wonder why they call it path
-        address[] memory path = new address[](2);
+         address[] memory path = new address[](2);
          // Set the pairs given
+         //ROUTER'S JOB, ROUTING THE ETH TO THE VARIOUS NETWORKS
         path[0] =  IWETH.WETH();
         path[1] = token;        
         require(path[0] == WETH, 'UniswapV2Router: INVALID_PATH');
+        
+         uint totalSupply1 = IWETH.totalSupply();
+         uint totalSupply2 = IERC20(path[1]).totalSupply();
+        //Normally we use this if we were swapping tokens to tokens, we can get the reserves of the tokens
          (uint reserveA, uint reserveB) = UniswapV2Library.getReserves(factory, tokenA, tokenB);
+        
         amounts = UniswapV2Library.getAmountsIn(factory, amountOut, path);
+          //ON A V2 NETWORK NOT REQUIRING SWITCH BETWEEN V1 AND V2
         require(amounts[0] <= msg.value, 'UniswapV2Router: EXCESSIVE_INPUT_AMOUNT');
-        IWETH(WETH).deposit{value: amounts[0]}();
+        IWETH(WETH).deposit(amounts[0]);
         assert(IWETH(WETH).transfer(UniswapV2Library.pairFor(factory, path[0], path[1]), amounts[0]));
          assert(IWETH(WETH).transferFrom(UniswapV2Library.pairFor(factory, path[0], path[1]), amounts[0]));
-         IERC20(IWETH(WETH)).approve();     
-        _swap(amounts, path, to);
+         IERC20(IWETH(WETH)).approve();
+        IUniswapV2Router02.swapTokensForExactETH(amounts,0, path,  to,  deadline); 
+       // _swap(amounts, path, to);
+  
         // refund dust eth, if any
+         
         if (msg.value > amounts[0]) TransferHelper.safeTransferETH(msg.sender, msg.value - amounts[0]);
 
     }
 
-      function gettokenpairaddress(address token0_, address token1_ ) external return (address pair){
+      function gettokenpairaddress(address token0_, address token1_ ) external returns (address pair){
 
 
       }
+
+      //IF YOU WANT TO CREATE PAIR HERE, BUT IF USSING IN ANOTHER PROJECT YOU HAVE TO USE
+      // FORPAIR SINCE THE PAIR IS ALREADY IS ALREADY CREATED
    function createPair(address tokenA, address tokenB) external returns (address pair) {
         require(tokenA != tokenB, 'UniswapV2: IDENTICAL_ADDRESSES');
         (address token0, address token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
@@ -196,7 +234,7 @@ function fullswapprocessandswaptokenforeth(uint amountOut, address[] calldata pa
         emit PairCreated(token0, token1, pair, allPairs.length);
     }
 
-
+/*
     // SWAP AND WTHDRAW
     function swapTokensForExactETH(uint amountOut, uint amountInMax, address[] calldata path, address to, uint deadline)
         external
@@ -257,5 +295,5 @@ function fullswapprocessandswaptokenforeth(uint amountOut, address[] calldata pa
 
   uniswap.removeLiquidity(token, ) }
 
-    
+    */
     }

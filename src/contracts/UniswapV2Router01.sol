@@ -75,7 +75,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
         uint amountBMin,
         address to,
         uint deadline
-    ) external override ensure(deadline) returns (uint amountA, uint amountB, uint liquidity) {
+    ) external  ensure(deadline) returns (uint amountA, uint amountB, uint liquidity) {
         (amountA, amountB) = _addLiquidity(tokenA, tokenB, amountADesired, amountBDesired, amountAMin, amountBMin);
         address pair = UniswapV2Library.pairFor(factory, tokenA, tokenB);
         TransferHelper.safeTransferFrom(tokenA, msg.sender, pair, amountA);
@@ -89,7 +89,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
         uint amountETHMin,
         address to,
         uint deadline
-    ) external override payable ensure(deadline) returns (uint amountToken, uint amountETH, uint liquidity) {
+    ) external  payable ensure(deadline) returns (uint amountToken, uint amountETH, uint liquidity) {
         (amountToken, amountETH) = _addLiquidity(
             token,
             WETH,

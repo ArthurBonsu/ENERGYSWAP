@@ -27,14 +27,17 @@ contract UniswapV2Migrator is IUniswapV2Migrator {
     //THIS 
     function migrate(address token, uint amountTokenMin, uint amountETHMin, address to, uint deadline)
         external
-        override
+ 
     {
         IUniswapV1Exchange exchangeV1 = IUniswapV1Exchange(factoryV1.getExchange(token));
+
+        // THis is how they achieve liquidity from the exchange in V1
         uint liquidityV1 = exchangeV1.balanceOf(msg.sender);
         require(exchangeV1.transferFrom(msg.sender, address(this), liquidityV1), 'TRANSFER_FROM_FAILED');
         (uint amountETHV1, uint amountTokenV1) = exchangeV1.removeLiquidity(liquidityV1, 1, 1, uint(-1));
         TransferHelper.safeApprove(token, address(router), amountTokenV1);
-        (uint amountTokenV2, uint amountETHV2,) = router.addLiquidityETH{value: amountETHV1}(
+      //  (uint amountTokenV2, uint amountETHV2,) = router.addLiquidityETH{value: amountETHV1}(
+             (uint amountTokenV2, uint amountETHV2,) = router.addLiquidityETH(
             token,
             amountTokenV1,
             amountTokenMin,
