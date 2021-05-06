@@ -15,6 +15,7 @@ import {ChainId, Fetcher,WETH} from '@uniswap/sdk';
 
 
 const  React = require('react');
+const ReactDOM =require('react-dom');
 const {Component} = require('react');
 const Style  =require('./App.css');
 const {ApolloClient}  = require('apollo-client');
@@ -57,12 +58,19 @@ const path = [weth.address, dai.address];
  const deadline = Math.floor(Date.now()/1000) + 60* 20;
  const provider = ethers.getDefaultProvider('ropsten', {infura: 'https://ropsten.infura.io/v3/de92f2791cfa4b2bb36aa86ae5b78137'});
 
-const signer = ethers.getDefaultProvider('ropsten', {infura: 'https://ropsten.infura.io/v3/de92f2791cfa4b2bb36aa86ae5b78137'});
+const signer = new ethers.Wallet(PRIVATE_KEY);
 const accounts = signer.connect(provider);
-const uniswap  = new ethers.Contract('0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D', [function swapExactETHForTokens(uint amountOutMin, address[] calldata path, address to, uint deadline) external payable returns(uint[] memory amounts)'], account);
+const uniswap  = new ethers.Contract('0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D', ['function swapExactETHForTokens(uint amountOutMin, address[] calldata path, address to, uint deadline) external payable returns(uint[] memory amounts)'], account);
 
 const tx = await uniswap.sendExactETHForTokens(amountOutMin, path, to, deadline, {value, gasPrice:20e9})
+
+console.log(`Transaction hash:' ${tx.hash}`);
+
+const receipt = await tx.await();
+console.log(`Transaction was mined in block ${receipt.blockNumber}`);
 }
+
+
 
 init();
 
@@ -72,7 +80,7 @@ init();
 
 
 // This NFT CAN QUERY 
-
+/*
     const client = new ApolloClient({
         link: new HttpLink({
          uri: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2'
@@ -104,7 +112,7 @@ const ETH_PRICE_QUERY = gql`
 
  }`
 
-
+//proce
 
 
 const daiPriceInEth = daiData && daiData.tokens[0].derivedETH
@@ -113,18 +121,7 @@ const ethPriceInUSD = ethPriceData && ethPriceData.bundles[0].ethPrice
 
 
 
-class UniswapApp extends Component  {
-    constructor(props){
-       super (props)
-        this.state = {
-          tokenid:0,
-          daiprice:0,
-          totalliquidity:0,
-          ethPriceInUSD: 0  
 
-        }
-
-    }
 
     
 const {loading:ethLoading, data: ethPriceData} = useQuery(ETH_PRICE_QUERY)
@@ -137,29 +134,25 @@ const {loading: daiLoading, data:daiData} = useQuery(DAI_QUERY, {
    const daiPriceInEth = daiData && daiData.tokens[0].derivedETH
    const daiTotalLiquidity = daiData && daiData.tokens[0].totalLiquidity
    const ethPriceInUSD = ethPriceData && ethPriceData.bundles[0].ethPrice
-
-   
-
-    render(){
-     //  const  {token } = this.state
-      
-       return(
-      
-       <div>  
-       <h2 onMouseOver = {}> Hovered  </h2>
-       <button onClick = {} > Click {}  Clicked X times </button>
-       </div>     
-);
-console.log(`Transaction hash': ${tx.hash}`);
-const receipt = await tx.wait();
-console.log(`Transaction was mined in block' ${receipt.blocknumber}`)
-
-  
-    }
+*/
 
 
-
-
+  class UniswapApp extends React.Component {
+   constructor(props) {
+      super(props);
+		
+      this.state = {
+         header: "Header from state...",
+         content: "Content from state..."
+      }
+   }
+   render() {
+      return (
+         <div>
+            <h1>{this.state.header}</h1>
+            <h2>{this.state.content}</h2>
+         </div>
+      );
+   }
 }
-
-export default UniswapApp
+export default UniswapApp;
