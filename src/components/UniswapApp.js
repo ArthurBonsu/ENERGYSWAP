@@ -17,6 +17,8 @@ import {ChainId, Fetcher,WETH} from '@uniswap/sdk';
 const  React = require('react');
 const ReactDOM =require('react-dom');
 const {Component} = require('react');
+const {Babel} = require('babel');
+
 const Style  =require('./App.css');
 const {ApolloClient}  = require('apollo-client');
 const  {InMemoryCache} = require ('apollo-cache-inmemory');
@@ -148,10 +150,10 @@ const {loading: daiLoading, data:daiData} = useQuery(DAI_QUERY, {
    }
    render() {
       return (
-         <div>
+          <section>
             <h1>{this.state.header}</h1>
             <h2>{this.state.content}</h2>
-         </div>
+           </section>
       );
    }
 }

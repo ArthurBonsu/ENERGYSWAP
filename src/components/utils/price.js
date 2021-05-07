@@ -22,6 +22,8 @@ export function getUSDPrice(reserves) {
     forEachStablecoin(i => reserves[i].ethReserve.amount)
   )
 
+ // HOW TO CONNECT TO CONTRACT
+
   // const _stablecoinWeights = [
   //   getMean([medianWeights[0], meanWeights[0], weightedMeanWeights[0]])[0],
   //   getMean([medianWeights[1], meanWeights[1], weightedMeanWeights[1]])[0],

@@ -1,14 +1,16 @@
 import { ethers } from 'ethers'
 
+// THE ABI SETS HERE
 import FACTORY_ABI from '../constants/abis/factory'
 import EXCHANGE_ABI from '../constants/abis/exchange'
 import ERC20_ABI from '../constants/abis/erc20'
 import ERC20_BYTES32_ABI from '../constants/abis/erc20_bytes32'
 import { FACTORY_ADDRESSES, SUPPORTED_THEMES } from '../constants'
 import { formatFixed } from '@uniswap/sdk'
-
+  // THE RPC SIGNER
 import UncheckedJsonRpcSigner from './signer'
 
+  // THIS IS THE ERROR CODES
 export const ERROR_CODES = ['TOKEN_NAME', 'TOKEN_SYMBOL', 'TOKEN_DECIMALS'].reduce(
   (accumulator, currentValue, currentIndex) => {
     accumulator[currentValue] = currentIndex
