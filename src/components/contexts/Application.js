@@ -1,7 +1,14 @@
-import React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect } from 'react'
+const React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect } =require ('react');
 
-import { useWeb3React } from '../hooks'
-import { safeAccess } from '../utils'
+const { useWeb3React } =require ('../hooks');
+const { safeAccess } =require ('../utils');
+
+
+
+//import React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect } from 'react'
+
+//import { useWeb3React } from '../hooks'
+//import { safeAccess } from '../utils'
 
 const BLOCK_NUMBER = 'BLOCK_NUMBER'
 const USD_PRICE = 'USD_PRICE'

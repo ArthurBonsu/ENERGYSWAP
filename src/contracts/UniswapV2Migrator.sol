@@ -1,5 +1,5 @@
-pragma solidity ^0.5.5;
-
+//pragma solidity ^0.5.5;
+pragma solidity >=0.4.16 <0.9.0;
 import '@uniswap/lib/contracts/libraries/TransferHelper.sol';
 
 import './interfaces/IUniswapV2Migrator.sol';

@@ -1,5 +1,7 @@
-import * as ethers from 'ethers'
+const * as ethers =require('ethers');
 
+
+//import * as ethers from 'ethers'
 export default class UncheckedJsonRpcSigner extends ethers.Signer {
   constructor(signer) {
     super()

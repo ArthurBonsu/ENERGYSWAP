@@ -1,14 +1,28 @@
-import React from 'react'
-import styled, { keyframes } from 'styled-components'
-import { Check } from 'react-feather'
 
-import { useWeb3React } from '../../hooks'
-import { getEtherscanLink } from '../../utils'
-import { Link, Spinner } from '../../theme'
-import Copy from './Copy'
-import Circle from '../../assets/images/circle.svg'
+const React =require ( 'react');
+const styled, { keyframes } =require ( 'styled-components');
+const { Check } =require ( 'react-feather');
 
-import { transparentize } from 'polished'
+const { useWeb3React }=require (  '../../hooks');
+const { getEtherscanLink } =require (  '../../utils');
+const { Link, Spinner } =require ( '../../theme');
+const Copy =require (  './Copy'
+const Circle =require (  '../../assets/images/circle.svg');
+
+const { transparentize } =require (  'polished');
+
+ // INPUT PANEL {Search Name and Address}
+//import React from 'react'
+//import styled, { keyframes } from 'styled-components'
+//import { Check } from 'react-feather'
+
+//import { useWeb3React } from '../../hooks'
+//import { getEtherscanLink } from '../../utils'
+//import { Link, Spinner } from '../../theme'
+//import Copy from './Copy'
+//import Circle from '../../assets/images/circle.svg'
+
+//import { transparentize } from 'polished'
 
 const TransactionStatusWrapper = styled.div`
   display: flex;

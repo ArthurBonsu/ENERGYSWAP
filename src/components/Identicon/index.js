@@ -1,10 +1,18 @@
-import React, { useEffect, useRef } from 'react'
+const React, { useEffect, useRef } =require( 'react');
 
-import styled from 'styled-components'
+const styled =require( 'styled-components');
 
-import { useWeb3React } from '../../hooks'
-import Jazzicon from 'jazzicon'
+const { useWeb3React } =require( '../../hooks');
+const Jazzicon =require( 'jazzicon');
 
+
+
+//import React, { useEffect, useRef } from 'react'
+
+//import styled from 'styled-components'
+
+//import { useWeb3React } from '../../hooks'
+//import Jazzicon from 'jazzicon'
 const StyledIdenticon = styled.div`
   height: 1rem;
   width: 1rem;

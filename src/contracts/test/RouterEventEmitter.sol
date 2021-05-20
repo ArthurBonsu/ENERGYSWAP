@@ -1,5 +1,5 @@
-pragma solidity ^0.5.5;
-
+//pragma solidity ^0.5.5;
+pragma solidity >=0.4.16 <0.9.0;
 import '../interfaces/IUniswapV2Router01.sol';
 
 contract RouterEventEmitter {

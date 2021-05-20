@@ -1,13 +1,27 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import { animated, useTransition, useSpring } from 'react-spring'
-import { Spring } from 'react-spring/renderprops'
+const React  =require(  'react');
+const styled, { css }  =require(  'styled-components');
+const { animated, useTransition, useSpring }  =require(  'react-spring');
+const { Spring }  =require(  'react-spring/renderprops');
 
-import { DialogOverlay, DialogContent } from '@reach/dialog'
-import { isMobile } from 'react-device-detect'
-import '@reach/dialog/styles.css'
-import { transparentize } from 'polished'
-import { useGesture } from 'react-use-gesture'
+const { DialogOverlay, DialogContent } =require(  '@reach/dialog');
+const { isMobile }  =require( 'react-device-detect');
+const styles   =require('@reach/dialog/styles.css');
+const { transparentize }  =require( 'polished');
+const { useGesture }  =require( 'react-use-gesture');
+
+
+
+//import React from 'react'
+//import styled, { css } from 'styled-components'
+//import { animated, useTransition, useSpring } from 'react-spring'
+//import { Spring } from 'react-spring/renderprops'
+
+//import { DialogOverlay, DialogContent } from '@reach/dialog'
+//import { isMobile } from 'react-device-detect'
+//import '@reach/dialog/styles.css'
+//import { transparentize } from 'polished'
+//import { useGesture } from 'react-use-gesture'
+
 
 const AnimatedDialogOverlay = animated(DialogOverlay)
 const WrappedDialogOverlay = ({ suppressClassNameWarning, mobile, ...rest }) => <AnimatedDialogOverlay {...rest} />

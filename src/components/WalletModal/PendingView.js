@@ -1,12 +1,23 @@
-import React from 'react'
-import styled from 'styled-components'
-import Option from './Option'
-import { SUPPORTED_WALLETS } from '../../constants'
-import WalletConnectData from './WalletConnectData'
-import { walletconnect, injected } from '../../connectors'
-import { Spinner } from '../../theme'
-import Circle from '../../assets/images/circle.svg'
-import { darken } from 'polished'
+const React =require( 'react');
+const styled=require( 'styled-components');
+const Option =require( './Option');
+const { SUPPORTED_WALLETS } =require( '../../constants');
+const WalletConnectData =require( './WalletConnectData');
+const { walletconnect, injected } =require( '../../connectors');
+const { Spinner } =require( '../../theme');
+const Circle =require('../../assets/images/circle.svg');
+const { darken } =require( 'polished');
+
+
+//import React from 'react'
+//import styled from 'styled-components'
+//import Option from './Option'
+//import { SUPPORTED_WALLETS } from '../../constants'
+//import WalletConnectData from './WalletConnectData'
+//import { walletconnect, injected } from '../../connectors'
+//import { Spinner } from '../../theme'
+//import Circle from '../../assets/images/circle.svg'
+//import { darken } from 'polished'
 
 const PendingSection = styled.div`
   ${({ theme }) => theme.flexColumnNoWrap};

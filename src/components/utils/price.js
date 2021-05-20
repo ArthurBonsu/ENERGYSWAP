@@ -1,6 +1,9 @@
-import { getMarketDetails } from '@uniswap/sdk'
-import { getMedian, getMean } from './math'
+const { getMarketDetails } =require('@uniswap/sdk');
+const { getMedian, getMean } =require('./math'
 
+
+//import { getMarketDetails } from '@uniswap/sdk'
+//import { getMedian, getMean } from './math'
 const DAI = 'DAI'
 const USDC = 'USDC'
 const TUSD = 'TUSD'

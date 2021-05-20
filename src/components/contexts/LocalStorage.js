@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect } from 'react'
+const React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect } =require ('react');
 
 const UNISWAP = 'UNISWAP'
 

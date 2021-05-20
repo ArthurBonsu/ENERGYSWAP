@@ -1,13 +1,46 @@
-import { useState, useMemo, useCallback, useEffect, useRef } from 'react'
-import { useWeb3React as useWeb3ReactCore } from '@web3-react/core'
-import copy from 'copy-to-clipboard'
-import { isMobile } from 'react-device-detect'
+// THIS IS TO CONNECT TO METAMASK AND CONNECT TO CONTRACT
+const { useState, useMemo, useCallback, useEffect, useRef } =require( 'react');
 
-import { NetworkContextName } from '../constants'
-import ERC20_ABI from '../constants/abis/erc20'
-import { getContract, getFactoryContract, getExchangeContract, isAddress } from '../utils'
-import { injected } from '../connectors'
+// THIS SERVSES AS A CONNECTOR A SMART CONTRACT HERE
+const { useWeb3React as useWeb3ReactCore } =require('@web3-react/core');
+const copy =require( 'copy-to-clipboard');
+const { isMobile } =require( 'react-device-detect');
 
+// WE GET THE CONTRACT BEFORE HOOKS HERE
+
+const { NetworkContextName } =require( '../constants');
+const ERC20_ABI =require( '../constants/abis/erc20');
+const { getContract, getFactoryContract, getExchangeContract, isAddress } =require(  '../utils');
+
+// WE USE THE INJECT
+const { injected } =require( '../connectors');
+
+
+
+
+
+// THIS IS TO CONNECT TO METAMASK AND CONNECT TO CONTRACT
+//import { useState, useMemo, useCallback, useEffect, useRef } from 'react'
+
+// THIS SERVSES AS A CONNECTOR A SMART CONTRACT HERE
+//import { useWeb3React as useWeb3ReactCore } from '@web3-react/core'
+//import copy from 'copy-to-clipboard'
+//import { isMobile } from 'react-device-detect'
+
+// WE GET THE CONTRACT BEFORE HOOKS HERE
+
+//import { NetworkContextName } from '../constants'
+//import ERC20_ABI from '../constants/abis/erc20'
+//import { getContract, getFactoryContract, getExchangeContract, isAddress } from '../utils'
+
+// WE USE THE INJECT
+//import { injected } from '../connectors'
+
+ // REACT CONNECTION TO THE CONSTANTS WHAT DOES CONTSTATNHAVE
+
+ // CONSTANTS CONTAIN THE LIST OF TOKEN INFO, OR ERC INFORMATION, CONTRAINS CONTRACTS ABI 
+// THE CONTRACTS THERE ARE THE EXCHANGE CONTRACTS HERE AND THE  FACTORY CONTRACTS HERE
+// THE FULL CONTRACTS INVOLVE NETWORKCONTEXT HERE AND IT PICKS IT UP
 export function useWeb3React() {
   const context = useWeb3ReactCore()
   const contextNetwork = useWeb3ReactCore(NetworkContextName)
@@ -15,7 +48,12 @@ export function useWeb3React() {
   return context.active ? context : contextNetwork
 }
 
+// HOOK HERE 
+// METAMASK CONNECTS HERE, WE GET THE COONNECTOR 
+
 export function useEagerConnect() {
+
+   // HOOK IS PASSED TO TAKE THE CONTEXT AND VALUES MUCH LIKE CONTEXT
   const { activate, active } = useWeb3ReactCore() // specifically using useWeb3ReactCore because of what this hook does
 
   const [tried, setTried] = useState(false)
@@ -32,6 +70,8 @@ export function useEagerConnect() {
             setTried(true)
           })
         } else {
+
+          // SET TRY TO TRYING TO CONNECT WITH THE APP
           setTried(true)
         }
       }
@@ -52,9 +92,12 @@ export function useEagerConnect() {
  * Use for network and injected - logs user in
  * and out after checking what network theyre on
  */
+ // THE INACTIVELISTENER , HANDLE NETWORK CHANGES
+
+ // CHECKING INACTIVE LISTENER INFORMATION HERE
 export function useInactiveListener(suppress = false) {
   const { active, error, activate } = useWeb3ReactCore() // specifically using useWeb3React because of what this hook does
-
+      // HAVE TO CHECK FOR METAMASK TOO
   useEffect(() => {
     const { ethereum } = window
 
@@ -70,7 +113,7 @@ export function useInactiveListener(suppress = false) {
           activate(injected, undefined, true).catch(() => {})
         }
       }
-
+      // CHANGES THE HANDLENETWORK CHANGE
       const handleNetworkChanged = () => {
         // eat errors
         activate(injected, undefined, true).catch(() => {})
@@ -93,7 +136,11 @@ export function useInactiveListener(suppress = false) {
   }, [active, error, suppress, activate])
 }
 
+
+// CONSTANTS TO HOOKS, 
 // modified from https://usehooks.com/useDebounce/
+
+// SET USEDEBOUNCE VALUE
 export function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value)
 
@@ -115,6 +162,7 @@ export function useDebounce(value, delay) {
 }
 
 // modified from https://usehooks.com/useKeyPress/
+// THE BODYKEY DOWN
 export function useBodyKeyDown(targetKey, onKeyDown, suppressOnKeyDown = false) {
   const downHandler = useCallback(
     event => {
@@ -138,6 +186,8 @@ export function useBodyKeyDown(targetKey, onKeyDown, suppressOnKeyDown = false) 
   }, [downHandler])
 }
 
+//WE GET THE ENS NAME HERE
+// WE GET THE ETHEREUM NETWORK ADDRESS, IS IT ALSO IN CONSTANTS , CONTEXT TOO, CONNECTORS
 export function useENSName(address) {
   const { library } = useWeb3React()
 
@@ -174,6 +224,10 @@ export function useENSName(address) {
 }
 
 // returns null on errors
+// GET THE CONTRACT INFO HERE
+
+// THIS IS THE CONTRACT TO ENABLE US USE THE CONTRACT HERE
+
 export function useContract(address, ABI, withSignerIfPossible = true) {
   const { library, account } = useWeb3React()
 
@@ -187,7 +241,9 @@ export function useContract(address, ABI, withSignerIfPossible = true) {
 }
 
 // returns null on errors
+// USE THE TOKEN ADDRESSS CONTRACT HERE
 export function useTokenContract(tokenAddress, withSignerIfPossible = true) {
+   // THIS IS HOW YOU CONNECT OVER REACT AND CONNECT TO A CONTRACT
   const { library, account } = useWeb3React()
 
   return useMemo(() => {
@@ -200,9 +256,12 @@ export function useTokenContract(tokenAddress, withSignerIfPossible = true) {
 }
 
 // returns null on errors
+
+ // factory contracts here
 export function useFactoryContract(withSignerIfPossible = true) {
   const { chainId, library, account } = useWeb3React()
 
+   // MEMO THIS IS WHAT WE HAVE
   return useMemo(() => {
     try {
       return getFactoryContract(chainId, library, withSignerIfPossible ? account : undefined)
@@ -212,9 +271,11 @@ export function useFactoryContract(withSignerIfPossible = true) {
   }, [chainId, library, withSignerIfPossible, account])
 }
 
+// WE CONNECT TO THE EXCHANGES WITH THIS 
 export function useExchangeContract(exchangeAddress, withSignerIfPossible = true) {
   const { library, account } = useWeb3React()
-
+ 
+  // RETURN MEMO? WHAT IS MEMO FOR
   return useMemo(() => {
     try {
       return getExchangeContract(exchangeAddress, library, withSignerIfPossible ? account : undefined)
@@ -224,6 +285,8 @@ export function useExchangeContract(exchangeAddress, withSignerIfPossible = true
   }, [exchangeAddress, library, withSignerIfPossible, account])
 }
 
+
+ // COPY CLIIPBOARD, USE IT TO COPY STUFF
 export function useCopyClipboard(timeout = 500) {
   const [isCopied, setIsCopied] = useState(false)
 
@@ -248,6 +311,8 @@ export function useCopyClipboard(timeout = 500) {
 }
 
 // modified from https://usehooks.com/usePrevious/
+
+// USE PREVIOUS HERE
 export function usePrevious(value) {
   // The ref object is a generic container whose current property is mutable ...
   // ... and can hold any value, similar to an instance property on a class

@@ -1,10 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import { useTranslation } from 'react-i18next'
-import { transparentize } from 'polished'
 
-import { isAddress } from '../../utils'
-import { useWeb3React, useDebounce } from '../../hooks'
+const React, { useState, useEffect } = require('react');
+const styled =require ('styled-components');
+const { useTranslation } =require ('react-i18next');
+const { transparentize } =require ('polished');
+
+const { isAddress } = require ('../../utils');
+const { useWeb3React, useDebounce } =require ('../../hooks');
+
+//import React, { useState, useEffect } from 'react'
+//import styled from 'styled-components'
+//import { useTranslation } from 'react-i18next'
+//import { transparentize } from 'polished'
+
+//import { isAddress } from '../../utils'
+//import { useWeb3React, useDebounce } from '../../hooks'
 
 const InputPanel = styled.div`
   ${({ theme }) => theme.flexColumnNoWrap}

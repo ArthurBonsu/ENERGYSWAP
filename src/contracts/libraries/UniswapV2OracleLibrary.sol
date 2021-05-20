@@ -1,5 +1,5 @@
-pragma solidity ^0.5.5;
-
+//pragma solidity ^0.5.5;
+pragma solidity >=0.4.16 <0.9.0;
 import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol';
 import '@uniswap/lib/contracts/libraries/FixedPoint.sol';
 

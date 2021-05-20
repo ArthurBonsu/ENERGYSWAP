@@ -1,24 +1,49 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
-import ReactGA from 'react-ga'
-import { createBrowserHistory } from 'history'
-import { ethers } from 'ethers'
-import styled from 'styled-components'
+const React, { useState, useEffect, useCallback } =require( 'react');
+const { useTranslation } =require( 'react-i18next');
+const ReactGA =require( 'react-ga');
+const { createBrowserHistory } =require( 'history');
+const { ethers } =require( 'ethers');
+const styled =require( 'styled-components');
 
-import { useWeb3React, useExchangeContract } from '../../hooks'
-import { useTransactionAdder } from '../../contexts/Transactions'
-import { useTokenDetails, INITIAL_TOKENS_CONTEXT } from '../../contexts/Tokens'
-import { useAddressBalance, useETHPriceInUSD } from '../../contexts/Balances'
+const { useWeb3React, useExchangeContract } =require( '../../hooks');
+const { useTransactionAdder } =require( '../../contexts/Transactions');
+const { useTokenDetails, INITIAL_TOKENS_CONTEXT } =require( '../../contexts/Tokens');
+const { useAddressBalance, useETHPriceInUSD } =require('../../contexts/Balances');
 
-import { calculateGasMargin, amountFormatter } from '../../utils'
-import { brokenTokens } from '../../constants'
+const { calculateGasMargin, amountFormatter } =require( '../../utils');
+const { brokenTokens } =require( '../../constants');
 
-import { Button } from '../../theme'
-import CurrencyInputPanel from '../../components/CurrencyInputPanel'
-import ContextualInfo from '../../components/ContextualInfo'
-import OversizedPanel from '../../components/OversizedPanel'
-import ArrowDown from '../../assets/svg/SVGArrowDown'
-import WarningCard from '../../components/WarningCard'
+const { Button } =require( '../../theme');
+const CurrencyInputPanel =require( '../../components/CurrencyInputPanel');
+const ContextualInfo =require( '../../components/ContextualInfo');
+const OversizedPanel =require( '../../components/OversizedPanel');
+const ArrowDown =require( '../../assets/svg/SVGArrowDown');
+const WarningCard =require('../../components/WarningCard');
+
+
+
+//import React, { useState, useEffect, useCallback } from 'react'
+//import { useTranslation } from 'react-i18next'
+//import ReactGA from 'react-ga'
+//import { createBrowserHistory } from 'history'
+//import { ethers } from 'ethers'
+//import styled from 'styled-components'
+
+//import { useWeb3React, useExchangeContract } from '../../hooks'
+//import { useTransactionAdder } from '../../contexts/Transactions'
+//import { useTokenDetails, INITIAL_TOKENS_CONTEXT } from '../../contexts/Tokens'
+//import { useAddressBalance, useETHPriceInUSD } from '../../contexts/Balances'
+
+//import { calculateGasMargin, amountFormatter } from '../../utils'
+//import { brokenTokens } from '../../constants'
+
+//import { Button } from '../../theme'
+//import CurrencyInputPanel from '../../components/CurrencyInputPanel'
+//import ContextualInfo from '../../components/ContextualInfo'
+//import OversizedPanel from '../../components/OversizedPanel'
+//import ArrowDown from '../../assets/svg/SVGArrowDown'
+//import WarningCard from '../../components/WarningCard'
+
 
 // denominated in bips
 const ALLOWED_SLIPPAGE = ethers.utils.bigNumberify(200)

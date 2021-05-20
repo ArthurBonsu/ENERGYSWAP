@@ -1,14 +1,25 @@
-import React, { useState, useEffect } from 'react'
-import { useWeb3React } from '@web3-react/core'
-import styled from 'styled-components'
-import { useTranslation } from 'react-i18next'
+const React, { useState, useEffect } =require('react');
+const { useWeb3React } =require('@web3-react/core');
+const styled =require( 'styled-components');
+const { useTranslation } =require( 'react-i18next');
 
-import { network } from '../../connectors'
-import { useEagerConnect, useInactiveListener } from '../../hooks'
-import { Spinner } from '../../theme'
-import Circle from '../../assets/images/circle.svg'
-import { NetworkContextName } from '../../constants'
+const { network }=require( '../../connectors');
+const { useEagerConnect, useInactiveListener }=require('../../hooks');
+const { Spinner }=require('../../theme');
+const Circle =require( '../../assets/images/circle.svg');
+const { NetworkContextName } =require( '../../constants');
 
+
+//import React, { useState, useEffect } from 'react'
+//import { useWeb3React } from '@web3-react/core'
+//import styled from 'styled-components'
+//import { useTranslation } from 'react-i18next'
+
+//import { network } from '../../connectors'
+//import { useEagerConnect, useInactiveListener } from '../../hooks'
+//import { Spinner } from '../../theme'
+//import Circle from '../../assets/images/circle.svg'
+//import { NetworkContextName } from '../../constants'
 const MessageWrapper = styled.div`
   display: flex;
   align-items: center;

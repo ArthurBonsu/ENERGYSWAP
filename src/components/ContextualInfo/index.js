@@ -1,10 +1,30 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+const React, { Component } =require ('react');
+const PropTypes =require('prop-types');
+const styled =require ('styled-components');
 
-import ReactGA from 'react-ga'
-import { ReactComponent as Dropup } from '../../assets/images/dropup-blue.svg'
-import { ReactComponent as Dropdown } from '../../assets/images/dropdown-blue.svg'
+const ReactGA =require ('react-ga');
+const { ReactComponent as Dropup } =require ('../../assets/images/dropup-blue.svg');
+const { ReactComponent as Dropdown } =require(x '../../assets/images/dropdown-blue.svg'
+
+const PropTypes =require ('prop-types');
+const styled =require ('styled-components');
+
+const ReactGA =require ('react-ga');
+const { ReactComponent as Dropup } =require( '../../assets/images/dropup-blue.svg');
+const { ReactComponent as Dropdown } =require( '../../assets/images/dropdown-blue.svg');
+
+
+
+
+
+
+//import React, { Component } from 'react'
+//import PropTypes from 'prop-types'
+//import styled from 'styled-components'
+
+//import ReactGA from 'react-ga'
+//import { ReactComponent as Dropup } from '../../assets/images/dropup-blue.svg'
+//import { ReactComponent as Dropdown } from '../../assets/images/dropdown-blue.svg'
 
 const SummaryWrapper = styled.div`
   color: ${({ error, theme }) => (error ? theme.salmonRed : theme.doveGray)};

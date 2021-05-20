@@ -162,7 +162,8 @@ ropsten:{
   contracts_build_directory: './src/abis/',
   compilers: {
     solc: {
-      version: "^0.5.5",
+     // version: "^0.5.5",
+    version: "0.8.3",
       optimizer: {
         enabled: true,
         runs: 200

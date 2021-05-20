@@ -1,24 +1,48 @@
-import React, { useReducer, useState, useCallback, useEffect, useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
-import { createBrowserHistory } from 'history'
-import { ethers } from 'ethers'
-import ReactGA from 'react-ga'
-import styled from 'styled-components'
+const React, { useReducer, useState, useCallback, useEffect, useMemo } =require(  'react');
+const { useTranslation }=require(  'react-i18next');
+const { createBrowserHistory } =require( 'history');
+const { ethers } =require(  'ethers');
+const ReactGA =require( 'react-ga');
+const styled =require(  'styled-components');
 
-import { Button } from '../../theme'
-import CurrencyInputPanel from '../../components/CurrencyInputPanel'
-import OversizedPanel from '../../components/OversizedPanel'
-import ContextualInfo from '../../components/ContextualInfo'
-import { ReactComponent as Plus } from '../../assets/images/plus-blue.svg'
-import WarningCard from '../../components/WarningCard'
+const { Button } =require(  '../../theme'
+const CurrencyInputPanel =require(  '../../components/CurrencyInputPanel');
+const OversizedPanel =require(  '../../components/OversizedPanel');
+const ContextualInfo =require(  '../../components/ContextualInfo');
+const { ReactComponent as Plus }  =require('../../assets/images/plus-blue.svg');
+const WarningCard =require(  '../../components/WarningCard');
 
-import { useWeb3React, useExchangeContract } from '../../hooks'
-import { brokenTokens } from '../../constants'
-import { amountFormatter, calculateGasMargin } from '../../utils'
-import { useTransactionAdder } from '../../contexts/Transactions'
-import { useTokenDetails, INITIAL_TOKENS_CONTEXT } from '../../contexts/Tokens'
-import { useAddressBalance, useExchangeReserves, useETHPriceInUSD } from '../../contexts/Balances'
-import { useAddressAllowance } from '../../contexts/Allowances'
+const { useWeb3React, useExchangeContract } =require(  '../../hooks');
+const { brokenTokens } =require(  '../../constants');
+const { amountFormatter, calculateGasMargin }=require(  '../../utils');
+const { useTransactionAdder } =require(  '../../contexts/Transactions');
+const { useTokenDetails, INITIAL_TOKENS_CONTEXT } =require(  '../../contexts/Tokens');
+const { useAddressBalance, useExchangeReserves, useETHPriceInUSD }=require(  '../../contexts/Balances'
+const { useAddressAllowance } =require(  '../../contexts/Allowances');
+
+
+
+//import React, { useReducer, useState, useCallback, useEffect, useMemo } from 'react'
+//import { useTranslation } from 'react-i18next'
+//import { createBrowserHistory } from 'history'
+//import { ethers } from 'ethers'
+//import ReactGA from 'react-ga'
+//import styled from 'styled-components'
+
+//import { Button } from '../../theme'
+//import CurrencyInputPanel from '../../components/CurrencyInputPanel'
+//import OversizedPanel from '../../components/OversizedPanel'
+//import ContextualInfo from '../../components/ContextualInfo'
+//import { ReactComponent as Plus } from '../../assets/images/plus-blue.svg'
+//import WarningCard from '../../components/WarningCard'
+
+//import { useWeb3React, useExchangeContract } from '../../hooks'
+//import { brokenTokens } from '../../constants'
+//import { amountFormatter, calculateGasMargin } from '../../utils'
+//import { useTransactionAdder } from '../../contexts/Transactions'
+//import { useTokenDetails, INITIAL_TOKENS_CONTEXT } from '../../contexts/Tokens'
+//import { useAddressBalance, useExchangeReserves, useETHPriceInUSD } from '../../contexts/Balances'
+//import { useAddressAllowance } from '../../contexts/Allowances'
 
 const INPUT = 0
 const OUTPUT = 1

@@ -1,7 +1,19 @@
-import React from 'react';
-import '../App.css';
-import { Button } from './Button';
-import './ProjectMain.css';
+const React =require(  'react');
+const App  =require('../App.css');
+const Button { Button }  =require(  './Button');
+const ProjectMain  =require(  './ProjectMain.css');
+
+
+//import React from 'react';
+//import '../App.css';
+//import { Button } from './Button';
+//import './ProjectMain.css';
+
+
+//import React from 'react';
+//import '../App.css';
+//import { Button } from './Button';
+//import './ProjectMain.css';
 
 function ProjectMain() {
   return (

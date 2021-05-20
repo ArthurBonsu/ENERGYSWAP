@@ -1,18 +1,37 @@
-import React, { useCallback } from 'react'
-import { withRouter, NavLink } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
-import { transparentize, darken } from 'polished'
+const React, { useCallback } =require( 'react');
+const { withRouter, NavLink } =require( 'react-router-dom');
+const { useTranslation } =require( 'react-i18next');
+const styled =require('styled-components');
+const { transparentize, darken } =require( 'polished');
 
-import { useWeb3React, useBodyKeyDown } from '../../hooks'
-import { useAddressBalance } from '../../contexts/Balances'
-import { isAddress } from '../../utils'
-import {
+const { useWeb3React, useBodyKeyDown }=require( '../../hooks');
+const { useAddressBalance } =require( '../../contexts/Balances');
+const { isAddress } =require( '../../utils');
+const {
   useBetaMessageManager,
   useSaiHolderMessageManager,
   useGeneralDaiMessageManager
-} from '../../contexts/LocalStorage'
-import { Link } from '../../theme/components'
+} =require( '../../contexts/LocalStorage');
+const { Link } from=require( '../../theme/components');
+
+
+
+
+//import React, { useCallback } from 'react'
+//import { withRouter, NavLink } from 'react-router-dom'
+//import { useTranslation } from 'react-i18next'
+//import styled from 'styled-components'
+//import { transparentize, darken } from 'polished'
+
+//import { useWeb3React, useBodyKeyDown } from '../../hooks'
+//import { useAddressBalance } from '../../contexts/Balances'
+//import { isAddress } from '../../utils'
+//import {
+//  useBetaMessageManager,
+//  useSaiHolderMessageManager,
+//  useGeneralDaiMessageManager
+//} from '../../contexts/LocalStorage'
+//import { Link } from '../../theme/components'
 
 const tabOrder = [
   {

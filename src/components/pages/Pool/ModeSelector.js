@@ -1,15 +1,30 @@
-import React, { useState, useCallback } from 'react'
-import { withRouter, NavLink } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+const React, { useState, useCallback }  =require( 'react');
+const { withRouter, NavLink }  =require('react-router-dom');
+const { useTranslation }  =require( 'react-i18next');
+const styled  =require( 'styled-components');
 
-import OversizedPanel from '../../components/OversizedPanel'
-import { ReactComponent as Dropdown } from '../../assets/images/dropdown-blue.svg'
+const OversizedPanel  =require( '../../components/OversizedPanel');
+const { ReactComponent as Dropdown }  =require( '../../assets/images/dropdown-blue.svg');
 
-import Modal from '../../components/Modal'
-import { useBodyKeyDown } from '../../hooks'
+const Modal  =require( '../../components/Modal');
+const { useBodyKeyDown }  =require( '../../hooks');
 
-import { lighten } from 'polished'
+const { lighten }  =require( 'polished');
+
+
+
+//import React, { useState, useCallback } from 'react'
+//import { withRouter, NavLink } from 'react-router-dom'
+//import { useTranslation } from 'react-i18next'
+//import styled from 'styled-components'
+
+//import OversizedPanel from '../../components/OversizedPanel'
+//import { ReactComponent as Dropdown } from '../../assets/images/dropdown-blue.svg'
+
+//import Modal from '../../components/Modal'
+//import { useBodyKeyDown } from '../../hooks'
+
+//import { lighten } from 'polished'
 
 const poolTabOrder = [
   {

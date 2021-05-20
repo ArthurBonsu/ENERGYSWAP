@@ -1,24 +1,51 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import { useTranslation } from 'react-i18next'
-import { useWeb3React, UnsupportedChainIdError } from '@web3-react/core'
-import { darken, transparentize } from 'polished'
-import { Activity } from 'react-feather'
+const React =require('react');
+const styled, { css }=require(  'styled-components');
+const { useTranslation } =require(  'react-i18next');
+const { useWeb3React, UnsupportedChainIdError } =require(  '@web3-react/core');
+const { darken, transparentize } =require(  'polished');
+const { Activity } =require( 'react-feather');
 
-import { shortenAddress } from '../../utils'
-import { useENSName } from '../../hooks'
-import WalletModal from '../WalletModal'
-import { useAllTransactions } from '../../contexts/Transactions'
-import { useWalletModalToggle } from '../../contexts/Application'
-import { Spinner } from '../../theme'
-import Circle from '../../assets/images/circle.svg'
-import { injected, walletconnect, walletlink, fortmatic, portis } from '../../connectors'
-import WalletConnectIcon from '../../assets/images/walletConnectIcon.svg'
-import CoinbaseWalletIcon from '../../assets/images/coinbaseWalletIcon.svg'
-import FortmaticIcon from '../../assets/images/fortmaticIcon.png'
-import PortisIcon from '../../assets/images/portisIcon.png'
-import { NetworkContextName } from '../../constants'
-import Identicon from '../Identicon'
+const { shortenAddress } =require(  '../../utils');
+const { useENSName } =require(  '../../hooks');
+const WalletModal =require(  '../WalletModal');
+const { useAllTransactions } =require(  '../../contexts/Transactions');
+const { useWalletModalToggle } =require(  '../../contexts/Application');
+const { Spinner } =require(  '../../theme');
+const Circle =require( '../../assets/images/circle.svg');
+const { injected, walletconnect, walletlink, fortmatic, portis } =require(  '../../connectors');
+const WalletConnectIcon =require(  '../../assets/images/walletConnectIcon.svg');
+const CoinbaseWalletIcon =require(  '../../assets/images/coinbaseWalletIcon.svg');
+const FortmaticIcon =require(  '../../assets/images/fortmaticIcon.png');
+const PortisIcon =require(  '../../assets/images/portisIcon.png');
+const { NetworkContextName } =require(  '../../constants');
+const Identicon =require(  '../Identicon');
+
+
+
+
+
+
+//import React from 'react'
+//import styled, { css } from 'styled-components'
+//import { useTranslation } from 'react-i18next'
+//import { useWeb3React, UnsupportedChainIdError } from '@web3-react/core'
+//import { darken, transparentize } from 'polished'
+//import { Activity } from 'react-feather'
+
+//import { shortenAddress } from '../../utils'
+//import { useENSName } from '../../hooks'
+//import WalletModal from '../WalletModal'
+//import { useAllTransactions } from '../../contexts/Transactions'
+//import { useWalletModalToggle } from '../../contexts/Application'
+//import { Spinner } from '../../theme'
+//import Circle from '../../assets/images/circle.svg'
+//import { injected, walletconnect, walletlink, fortmatic, portis } from '../../connectors'
+//import WalletConnectIcon from '../../assets/images/walletConnectIcon.svg'
+//import CoinbaseWalletIcon from '../../assets/images/coinbaseWalletIcon.svg'
+//import FortmaticIcon from '../../assets/images/fortmaticIcon.png'
+//import PortisIcon from '../../assets/images/portisIcon.png'
+//import { NetworkContextName } from '../../constants'
+//import Identicon from '../Identicon'
 
 const Web3StatusGeneric = styled.button`
   ${({ theme }) => theme.flexRowNoWrap}

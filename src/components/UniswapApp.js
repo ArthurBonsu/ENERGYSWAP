@@ -19,7 +19,7 @@ const ReactDOM =require('react-dom');
 const {Component} = require('react');
 const {Babel} = require('babel');
 
-const Style  =require('./App.css');
+const App  =require('./App.css');
 const {ApolloClient}  = require('apollo-client');
 const  {InMemoryCache} = require ('apollo-cache-inmemory');
 const {HttpLink} = require ('apollo-link-http');

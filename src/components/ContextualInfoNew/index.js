@@ -1,9 +1,18 @@
-import React, { useState } from 'react'
-import styled, { css } from 'styled-components'
-import { transparentize } from 'polished'
-import ReactGA from 'react-ga'
-import { ReactComponent as Dropup } from '../../assets/images/dropup-blue.svg'
-import { ReactComponent as Dropdown } from '../../assets/images/dropdown-blue.svg'
+const React, { useState } =require ('react');
+const styled, { css } =require ('styled-components');
+const { transparentize } =require ('polished');
+const ReactGA =require ('react-ga');
+const { ReactComponent as Dropup } =require ('../../assets/images/dropup-blue.svg');
+const { ReactComponent as Dropdown } =require ('../../assets/images/dropdown-blue.svg');
+
+
+
+//import React, { useState } from 'react'
+//import styled, { css } from 'styled-components'
+//import { transparentize } from 'polished'
+//import ReactGA from 'react-ga'
+//import { ReactComponent as Dropup } from '../../assets/images/dropup-blue.svg'
+//import { ReactComponent as Dropdown } from '../../assets/images/dropdown-blue.svg'
 
 const SummaryWrapper = styled.div`
   color: ${({ error, brokenTokenWarning, theme }) => (error || brokenTokenWarning ? theme.salmonRed : theme.doveGray)};

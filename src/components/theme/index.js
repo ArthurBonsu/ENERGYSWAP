@@ -1,17 +1,27 @@
-import React, { useEffect } from 'react'
-import { ThemeProvider as StyledComponentsThemeProvider, createGlobalStyle, css } from 'styled-components'
-import { getQueryParam, checkSupportedTheme } from '../utils'
-import { SUPPORTED_THEMES } from '../constants'
-import { useDarkModeManager } from '../contexts/LocalStorage'
+const React, { useEffect } =require(  'react');
+const { ThemeProvider as StyledComponentsThemeProvider, createGlobalStyle, css } =require(  'styled-components');
+const { getQueryParam, checkSupportedTheme } =require(  '../utils');
+const { SUPPORTED_THEMES } =require( '../constants');
+const { useDarkModeManager } =require( '../contexts/LocalStorage');
+
+
+//import React, { useEffect } from 'react'
+//import { ThemeProvider as StyledComponentsThemeProvider, createGlobalStyle, css } from 'styled-components'
+//import { getQueryParam, checkSupportedTheme } from '../utils'
+//import { SUPPORTED_THEMES } from '../constants'
+//import { useDarkModeManager } from '../contexts/LocalStorage'
+
 
 export * from './components'
 
+
+//VALUES FOR MEDIA WIDTHS
 const MEDIA_WIDTHS = {
   upToSmall: 600,
   upToMedium: 960,
   upToLarge: 1280
 }
-
+// MEDIA SETTINGS HERE
 const mediaWidthTemplates = Object.keys(MEDIA_WIDTHS).reduce((accumulator, size) => {
   accumulator[size] = (...args) => css`
     @media (max-width: ${MEDIA_WIDTHS[size]}px) {
@@ -24,6 +34,9 @@ const mediaWidthTemplates = Object.keys(MEDIA_WIDTHS).reduce((accumulator, size)
 const white = '#FFFFFF'
 const black = '#000000'
 
+
+// THIS IS THE PROVIDER FOR THE THEMES TO BE USED ACCROSS THE VARIOUS PLACES
+// THE THEME PROVIDER IS SET HERE
 export default function ThemeProvider({ children }) {
   const [darkMode, toggleDarkMode] = useDarkModeManager()
   const themeURL = checkSupportedTheme(getQueryParam(window.location, 'theme'))
@@ -40,6 +53,7 @@ export default function ThemeProvider({ children }) {
   return <StyledComponentsThemeProvider theme={theme(themeToRender)}>{children}</StyledComponentsThemeProvider>
 }
 
+// THIS IS THE THEME ATTRIBUTES
 const theme = darkMode => ({
   white,
   black,

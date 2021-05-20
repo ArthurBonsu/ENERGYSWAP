@@ -73,7 +73,8 @@ const symbol = await contract.symbol()
 
 
  })
-  describe('indexing', async()=>{
+ 
+ describe('indexing', async()=>{
       let result, totalSupply
     
       it('lists colors', async()=>{

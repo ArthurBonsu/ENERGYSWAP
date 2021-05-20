@@ -1,6 +1,12 @@
-import { BigNumber } from '@uniswap/sdk'
+const { BigNumber }=require( '@uniswap/sdk');
+
+
+//import { BigNumber } from '@uniswap/sdk'
 
 // returns a deep copied + sorted list of values, as well as a sortmap
+// THIS IS WHAT HAS THE MATHS CALCULATIONS FOR UTILS 
+
+// UTILS CONTAINS THE CONTRACT FUNCTIONS INTERRACTING WITH EACH OTHER
 export function sortBigNumbers(values) {
   const valueMap = values.map((value, i) => ({ value, i }))
 

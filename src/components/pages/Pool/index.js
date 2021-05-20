@@ -1,7 +1,14 @@
-import React, { Suspense, lazy, useEffect } from 'react'
-import ReactGA from 'react-ga'
-import { Switch, Route, Redirect } from 'react-router-dom'
-import ModeSelector from './ModeSelector'
+const React, { Suspense, lazy, useEffect } =require( 'react');
+const ReactGA =require('react-ga');
+const { Switch, Route, Redirect } =require( 'react-router-dom');
+const ModeSelector =require( './ModeSelector');
+
+
+
+//import React, { Suspense, lazy, useEffect } from 'react'
+//import ReactGA from 'react-ga'
+//import { Switch, Route, Redirect } from 'react-router-dom'
+//import ModeSelector from './ModeSelector'
 
 const AddLiquidity = lazy(() => import('./AddLiquidity'))
 const RemoveLiquidity = lazy(() => import('./RemoveLiquidity'))

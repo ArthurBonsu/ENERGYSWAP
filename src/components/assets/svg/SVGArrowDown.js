@@ -1,4 +1,4 @@
-import React from 'react'
+const React =require ('react');
 
 const SVGArrowDown = props => (
   <svg width="1em" height="1em" viewBox="0 0 9 10" fill="currentColor" {...props}>

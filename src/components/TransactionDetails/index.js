@@ -1,13 +1,25 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
-import styled, { css, keyframes } from 'styled-components'
-import { darken, lighten } from 'polished'
-import { isAddress, amountFormatter } from '../../utils'
-import { useDebounce } from '../../hooks'
+const React, { useState, useEffect, useRef, useCallback }  =require('react');
+const { useTranslation } =require( 'react-i18next');
+const styled, { css, keyframes } =require( 'styled-components');
+const { darken, lighten } =require( 'polished');
+const { isAddress, amountFormatter } =require( '../../utils');
+const { useDebounce } =require( '../../hooks');
 
-import question from '../../assets/images/question.svg'
+const question =require( '../../assets/images/question.svg');
 
-import NewContextualInfo from '../../components/ContextualInfoNew'
+const NewContextualInfo =require( '../../components/ContextualInfoNew');
+
+
+//import React, { useState, useEffect, useRef, useCallback } from 'react'
+//import { useTranslation } from 'react-i18next'
+//import styled, { css, keyframes } from 'styled-components'
+//import { darken, lighten } from 'polished'
+//import { isAddress, amountFormatter } from '../../utils'
+//import { useDebounce } from '../../hooks'
+
+//import question from '../../assets/images/question.svg'
+
+//import NewContextualInfo from '../../components/ContextualInfoNew'
 
 const WARNING_TYPE = Object.freeze({
   none: 'none',

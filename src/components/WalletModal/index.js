@@ -1,22 +1,47 @@
-import React, { useState, useEffect } from 'react'
-import ReactGA from 'react-ga'
-import styled from 'styled-components'
-import { isMobile } from 'react-device-detect'
-import { useWeb3React, UnsupportedChainIdError } from '@web3-react/core'
-import { URI_AVAILABLE } from '@web3-react/walletconnect-connector'
+const React, { useState, useEffect }=require( 'react');
+const ReactGA =require( 'react-ga');
+const styled =require(  'styled-components');
+const { isMobile } =require('react-device-detect');
+const { useWeb3React, UnsupportedChainIdError }  =require('@web3-react/core');
+const { URI_AVAILABLE } =require('@web3-react/walletconnect-connector');
 
-import Modal from '../Modal'
-import AccountDetails from '../AccountDetails'
-import PendingView from './PendingView'
-import Option from './Option'
-import { SUPPORTED_WALLETS } from '../../constants'
-import { usePrevious } from '../../hooks'
-import { Link } from '../../theme'
-import MetamaskIcon from '../../assets/images/metamask.png'
-import { ReactComponent as Close } from '../../assets/images/x.svg'
-import { injected, walletconnect, fortmatic, portis } from '../../connectors'
-import { useWalletModalToggle, useWalletModalOpen } from '../../contexts/Application'
-import { OVERLAY_READY } from '../../connectors/Fortmatic'
+const Modal  =require('../Modal');
+const AccountDetails  =require( '../AccountDetails');
+const PendingView = require('./PendingView');
+const Option  = require( './Option');
+const { SUPPORTED_WALLETS } require( '../../constants');
+const { usePrevious }  = require( '../../hooks');
+const { Link } = require( '../../theme');
+const MetamaskIcon = require( '../../assets/images/metamask.png');
+const { ReactComponent as Close } = require( '../../assets/images/x.svg');
+const { injected, walletconnect, fortmatic, portis } = require( '../../connectors');
+const { useWalletModalToggle, useWalletModalOpen } = require( '../../contexts/Application');
+const { OVERLAY_READY } = require( '../../connectors/Fortmatic');
+
+
+
+
+
+//import React, { useState, useEffect } from 'react'
+//import ReactGA from 'react-ga'
+//import styled from 'styled-components'
+//import { isMobile } from 'react-device-detect'
+//import { useWeb3React, UnsupportedChainIdError } from '@web3-react/core'
+//import { URI_AVAILABLE } from '@web3-react/walletconnect-connector'
+
+//import Modal from '../Modal'
+//import AccountDetails from '../AccountDetails'
+//import PendingView from './PendingView'
+//import Option from './Option'
+//import { SUPPORTED_WALLETS } from '../../constants'
+//import { usePrevious } from '../../hooks'
+//import { Link } from '../../theme'
+//import MetamaskIcon from '../../assets/images/metamask.png'
+//import { ReactComponent as Close } from '../../assets/images/x.svg'
+//import { injected, walletconnect, fortmatic, portis } from '../../connectors'
+//import { useWalletModalToggle, useWalletModalOpen } from '../../contexts/Application'
+//import { OVERLAY_READY } from '../../connectors/Fortmatic'
+
 
 const CloseIcon = styled.div`
   position: absolute;

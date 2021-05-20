@@ -1,4 +1,4 @@
-import { NetworkConnector as NetworkConnectorCore } from '@web3-react/network-connector'
+const { NetworkConnector as NetworkConnectorCore } =require('@web3-react/network-connector');
 
 export class NetworkConnector extends NetworkConnectorCore {
   pause() {

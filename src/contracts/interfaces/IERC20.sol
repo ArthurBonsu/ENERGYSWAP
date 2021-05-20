@@ -1,5 +1,5 @@
-pragma solidity ^0.5.5;
-
+//pragma solidity ^0.5.5;
+pragma solidity >=0.4.16 <0.9.0;
 interface IERC20 {
     event Approval(address indexed owner, address indexed spender, uint value);
     event Transfer(address indexed from, address indexed to, uint value);

@@ -1,5 +1,5 @@
-pragma solidity ^0.5.5;
-
+//pragma solidity ^0.5.5;
+pragma solidity >=0.4.16 <0.9.0;
 import './interfaces/IUniswapV2Factory.sol';
 import './UniswapV2Pair.sol';
 
@@ -26,6 +26,9 @@ contract UniswapV2Factory is IUniswapV2Factory {
 
     function createPair(address tokenA, address tokenB) external returns (address pair) {
         require(tokenA != tokenB, 'UniswapV2: IDENTICAL_ADDRESSES');
+         // Under the uniswap side library these are rendered token 0 and 1
+         // We make sure they are in the right order
+         
         (address token0, address token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
         require(token0 != address(0), 'UniswapV2: ZERO_ADDRESS');
         
@@ -43,11 +46,13 @@ contract UniswapV2Factory is IUniswapV2Factory {
         emit PairCreated(token0, token1, pair, allPairs.length);
     }
           // WE SET THE FEE CHARGES TO WHOEVER IS ADDRESS RECEIVING THE FEE
+          // THIS IS TO SET THE FEES FOR THE POOL AND THE TRANSACTIONS PAYMENT, WELL COULD BE OTHER
+          //PAYMENT YET TO CONFIRM
     function setFeeTo(address _feeTo) external {
         require(msg.sender == feeToSetter, 'UniswapV2: FORBIDDEN');
         feeTo = _feeTo;
     }
-         // WE SET THE ADDRESS OF THE PERSON WHO HAS NOT SETTING
+         // WE SET THE FEES OF THE PERSON WE ARE SETTING THE ADDRESS TO 
     function setFeeToSetter(address _feeToSetter) external {
         require(msg.sender == feeToSetter, 'UniswapV2: FORBIDDEN');
         feeToSetter = _feeToSetter;

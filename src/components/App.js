@@ -1,29 +1,61 @@
-import React, { Component } from 'react';
-import Web3 from 'web3'
-import './App.css';
-import { update } from '../store/interactions'
-import { connect } from 'react-redux'
-import Navbar from './Navbar'
-import {Color} from '../contracts/Color'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import Main from './Main'
+const React, { Component } =require( 'react');
+const Web3 =require( 'web3');
+const App =require( './App.css');
+const { update }=require( '../store/interactions');
+const { connect } =require( 'react-redux');
+const Navbar =require( './Navbar');
+const {Color} =require( '../contracts/Color');
+const {BrowserRouter as Router, Switch, Route} =require( 'react-router-dom');
+const Main =require( './Main');
+
 
 //  Uniswap Your App
 // My Uniswap
-import UniswapApp from './UniswapApp'
+const UniswapApp =require( './UniswapApp');
 
 //Adding NFT and Uniswap Tab
 
 // Normal TopNavs
 
 // ITEMS TO BE FOUND ON THE NAV-BAR
-import Home from './components/pages/Home'
-import Services from './components/pages/Services'
-import Products from './components/pages/Products'
-import SignUp from './components/pages/SignUp'
-import Uniswap from './components/pages/UniswapApp1'
+const Home =require( './components/pages/Home');
+const Services =require( './components/pages/Services');
+const Products =require( './components/pages/Products');
+const SignUp =require( './components/pages/SignUp');
+const Uniswap =require( './components/pages/UniswapApp1');
 // NFT Main is not found in the main component due to routing issues so we keep it here to be  safe
-import NFTMain from  './NFTMain'
+const NFTMain =require( './NFTMain');
+
+
+
+
+//import React, { Component } from 'react';
+//import Web3 from 'web3'
+//import './App.css';
+//import { update } from '../store/interactions'
+//import { connect } from 'react-redux'
+//import Navbar from './Navbar'
+//import {Color} from '../contracts/Color'
+//import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+//import Main from './Main'
+
+
+//  Uniswap Your App
+// My Uniswap
+//import UniswapApp from './UniswapApp'
+
+//Adding NFT and Uniswap Tab
+
+// Normal TopNavs
+
+// ITEMS TO BE FOUND ON THE NAV-BAR
+//import Home from './components/pages/Home'
+//import Services from './components/pages/Services'
+//import Products from './components/pages/Products'
+//import SignUp from './components/pages/SignUp'
+//import Uniswap from './components/pages/UniswapApp1'
+// NFT Main is not found in the main component due to routing issues so we keep it here to be  safe
+//import NFTMain from  './NFTMain'
 
 
 const module = require('module');

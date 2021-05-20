@@ -1,4 +1,4 @@
-import { FortmaticConnector as FortmaticConnectorCore } from '@web3-react/fortmatic-connector'
+const { FortmaticConnector as FortmaticConnectorCore } =require('@web3-react/fortmatic-connector');
 
 export const OVERLAY_READY = 'OVERLAY_READY'
 

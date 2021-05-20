@@ -1,9 +1,17 @@
-import React from 'react'
-import styled from 'styled-components'
+const React =require( 'react');
+const styled =require( 'styled-components');
 
-import { Link } from '../../theme'
-import Web3Status from '../Web3Status'
-import { darken } from 'polished'
+const { Link } =require( '../../theme');
+const Web3Status =require( '../Web3Status');
+const { darken }=require( 'polished');
+
+
+//import React from 'react'
+//import styled from 'styled-components'
+
+//import { Link } from '../../theme'
+//import Web3Status from '../Web3Status'
+//import { darken } from 'polished'
 
 const HeaderFrame = styled.div`
   display: flex;

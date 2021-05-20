@@ -1,30 +1,63 @@
-import React, { useState, useRef, useMemo } from 'react'
-import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import { ethers } from 'ethers'
-import { BigNumber } from '@uniswap/sdk'
-import styled from 'styled-components'
-import escapeStringRegex from 'escape-string-regexp'
-import { darken } from 'polished'
-import Tooltip from '@reach/tooltip'
-import '@reach/tooltip/styles.css'
-import { isMobile } from 'react-device-detect'
+//THIS IS WHERE THE INPUT CHANNEL 
 
-import { BorderlessInput } from '../../theme'
-import { useWeb3React, useTokenContract } from '../../hooks'
-import { isAddress, calculateGasMargin, formatToUsd, formatTokenBalance, formatEthBalance } from '../../utils'
-import { ReactComponent as DropDown } from '../../assets/images/dropdown.svg'
-import Modal from '../Modal'
-import TokenLogo from '../TokenLogo'
-import SearchIcon from '../../assets/images/magnifying-glass.svg'
-import { useTransactionAdder, usePendingApproval } from '../../contexts/Transactions'
-import { useTokenDetails, useAllTokenDetails, INITIAL_TOKENS_CONTEXT } from '../../contexts/Tokens'
-import { useAddressBalance } from '../../contexts/Balances'
-import { ReactComponent as Close } from '../../assets/images/x.svg'
-import { transparentize } from 'polished'
-import { Spinner } from '../../theme'
-import Circle from '../../assets/images/circle-grey.svg'
-import { useETHPriceInUSD, useAllBalances } from '../../contexts/Balances'
+const React, { useState, useRef, useMemo } =require('react');
+const { Link } =require ('react-router-dom');
+const { useTranslation } =require ('react-i18next');
+const { ethers } =require ('ethers');
+const { BigNumber } =require ('@uniswap/sdk');
+const styled =require ('styled-components');
+const escapeStringRegex =require('escape-string-regexp');
+const { darken } =require ('polished');
+const Tooltip =require ('@reach/tooltip');
+const styles =require('@reach/tooltip/styles.css');
+const { isMobile } =require ('react-device-detect');
+
+const { BorderlessInput } =require ('../../theme');
+const { useWeb3React, useTokenContract } =require ('../../hooks');
+const { isAddress, calculateGasMargin, formatToUsd, formatTokenBalance, formatEthBalance } =require ('../../utils');
+const { ReactComponent as DropDown } =require('../../assets/images/dropdown.svg');
+const Modal =require ('../Modal');
+const TokenLogo =require ('../TokenLogo');
+const SearchIcon =require ('../../assets/images/magnifying-glass.svg');
+const { useTransactionAdder, usePendingApproval } =require ('../../contexts/Transactions');
+const { useTokenDetails, useAllTokenDetails, INITIAL_TOKENS_CONTEXT } =require('../../contexts/Tokens');
+const { useAddressBalance } =require ('../../contexts/Balances');
+const { ReactComponent as Close } =require ('../../assets/images/x.svg');
+const { transparentize } =require ('polished');
+const { Spinner } =require ('../../theme');
+const Circle =require() '../../assets/images/circle-grey.svg');
+const { useETHPriceInUSD, useAllBalances } =require ('../../contexts/Balances');
+
+
+
+
+//import React, { useState, useRef, useMemo } from 'react'
+//import { Link } from 'react-router-dom'
+//import { useTranslation } from 'react-i18next'
+//import { ethers } from 'ethers'
+//import { BigNumber } from '@uniswap/sdk'
+//import styled from 'styled-components'
+//import escapeStringRegex from 'escape-string-regexp'
+//import { darken } from 'polished'
+//import Tooltip from '@reach/tooltip'
+//import '@reach/tooltip/styles.css'
+//import { isMobile } from 'react-device-detect'
+
+//import { BorderlessInput } from '../../theme'
+//import { useWeb3React, useTokenContract } from '../../hooks'
+//import { isAddress, calculateGasMargin, formatToUsd, formatTokenBalance, formatEthBalance } from '../../utils'
+//import { ReactComponent as DropDown } from '../../assets/images/dropdown.svg'
+//import Modal from '../Modal'
+//import TokenLogo from '../TokenLogo'
+//import SearchIcon from '../../assets/images/magnifying-glass.svg'
+//import { useTransactionAdder, usePendingApproval } from '../../contexts/Transactions'
+//import { useTokenDetails, useAllTokenDetails, INITIAL_TOKENS_CONTEXT } from '../../contexts/Tokens'
+//import { useAddressBalance } from '../../contexts/Balances'
+//import { ReactComponent as Close } from '../../assets/images/x.svg'
+//import { transparentize } from 'polished'
+//import { Spinner } from '../../theme'
+//import Circle from '../../assets/images/circle-grey.svg'
+//import { useETHPriceInUSD, useAllBalances } from '../../contexts/Balances'
 
 const GAS_MARGIN = ethers.utils.bigNumberify(1000)
 

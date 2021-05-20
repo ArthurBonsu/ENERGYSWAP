@@ -1,17 +1,35 @@
-import React, { useState, useEffect } from 'react'
-import { withRouter } from 'react-router'
-import { createBrowserHistory } from 'history'
-import { ethers } from 'ethers'
-import styled from 'styled-components'
-import { useTranslation } from 'react-i18next'
-import ReactGA from 'react-ga'
+const React, { useState, useEffect } =require( 'react');
+const { withRouter }=require( 'react-router');
+const { createBrowserHistory } =require(  'history');
+const { ethers } =require( 'ethers');
+const styled =require(  'styled-components');
+const { useTranslation } =require(  'react-i18next');
+const ReactGA =require(  'react-ga');
 
-import { useWeb3React, useFactoryContract } from '../../hooks'
-import { Button } from '../../theme'
-import AddressInputPanel from '../../components/AddressInputPanel'
-import OversizedPanel from '../../components/OversizedPanel'
-import { useTokenDetails } from '../../contexts/Tokens'
-import { useTransactionAdder } from '../../contexts/Transactions'
+const { useWeb3React, useFactoryContract } =require(  '../../hooks');
+const { Button } =require(  '../../theme');
+const AddressInputPanel =require(  '../../components/AddressInputPanel');
+const OversizedPanel =require(  '../../components/OversizedPanel');
+const { useTokenDetails } =require(  '../../contexts/Tokens');
+const { useTransactionAdder } =require(  '../../contexts/Transactions');
+
+
+
+//import React, { useState, useEffect } from 'react'
+//import { withRouter } from 'react-router'
+//import { createBrowserHistory } from 'history'
+//import { ethers } from 'ethers'
+//import styled from 'styled-components'
+//import { useTranslation } from 'react-i18next'
+//import ReactGA from 'react-ga'
+
+//import { useWeb3React, useFactoryContract } from '../../hooks'
+//import { Button } from '../../theme'
+//import AddressInputPanel from '../../components/AddressInputPanel'
+//import OversizedPanel from '../../components/OversizedPanel'
+//import { useTokenDetails } from '../../contexts/Tokens'
+//import { useTransactionAdder } from '../../contexts/Transactions'
+
 
 const SummaryPanel = styled.div`
   ${({ theme }) => theme.flexColumnNoWrap};

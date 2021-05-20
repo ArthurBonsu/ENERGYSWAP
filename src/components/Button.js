@@ -1,3 +1,9 @@
+const React =require(  'react');
+const Button =require(  './Button.css');
+const { Link } =require( 'react-router-dom');
+
+
+
 // import React from 'react';
 // import './Button.css';
 // import { Link } from 'react-router-dom';
@@ -10,9 +16,9 @@
 //   );
 // }
 
-import React from 'react';
-import './Button.css';
-import { Link } from 'react-router-dom';
+//import React from 'react';
+//import './Button.css';
+//import { Link } from 'react-router-dom';
 
 const STYLES = ['btn--primary', 'btn--outline', 'btn--test'];
 

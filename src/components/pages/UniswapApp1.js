@@ -1,13 +1,28 @@
-import React, { Suspense, lazy } from 'react'
-import styled from 'styled-components'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+const React, { Suspense, lazy } =require( 'react');
+const styled =require( 'styled-components');
+const { BrowserRouter, Redirect, Route, Switch } =require( 'react-router-dom'
 
-import Web3ReactManager from '../components/Web3ReactManager'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+const Web3ReactManager =require( '../components/Web3ReactManager');
+const Header =require( '../components/Header');
+const Footer =require( '../components/Footer');
 
-import NavigationTabs from '../components/NavigationTabs'
-import { isAddress, getAllQueryParams } from '../utils'
+const NavigationTabs =require( '../components/NavigationTabs');
+const { isAddress, getAllQueryParams } =require( '../utils');
+
+
+
+
+
+//import React, { Suspense, lazy } from 'react'
+//import styled from 'styled-components'
+//import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+
+//import Web3ReactManager from '../components/Web3ReactManager'
+//import Header from '../components/Header'
+//import Footer from '../components/Footer'
+
+//import NavigationTabs from '../components/NavigationTabs'
+//import { isAddress, getAllQueryParams } from '../utils'
 
 const Swap = lazy(() => import('./Swap'))
 const Send = lazy(() => import('./Send'))

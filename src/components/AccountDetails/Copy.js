@@ -1,10 +1,19 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useCopyClipboard } from '../../hooks'
 
-import { Link } from '../../theme'
-import { CheckCircle, Copy } from 'react-feather'
+const React = require('react');
+const styled = require('styled-components');
+const {useCopyClipboard} = require('../../hooks');
+const {Link} = require('../../theme');
+const { CheckCircle, Copy } = require('react-feather');
 
+
+//import React from 'react'
+//import styled from 'styled-components'
+//import { useCopyClipboard } from '../../hooks'
+
+//import { Link } from '../../theme'
+//import { CheckCircle, Copy } from 'react-feather'
+
+// COMPONENTS OF THE UI SHOWN HERE
 const CopyIcon = styled(Link)`
   color: ${({ theme }) => theme.silverGray};
   flex-shrink: 0;

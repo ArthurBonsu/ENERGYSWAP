@@ -1,4 +1,4 @@
-pragma solidity ^0.5.5;
+pragma solidity >=0.4.16 <0.9.0;
 
 import '../libraries/UniswapV2LiquidityMathLibrary.sol';
 

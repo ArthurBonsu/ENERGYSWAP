@@ -1,7 +1,20 @@
-import React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect } from 'react'
+const React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect } =require('react');
 
-import { useWeb3React } from '../hooks'
-import {
+const { useWeb3React } =require ('../hooks');
+const {
+  isAddress,
+  getTokenName,
+  getTokenSymbol,
+  getTokenDecimals,
+  getTokenExchangeAddressFromFactory,
+  safeAccess
+} =require ('../utils');
+
+
+//import React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect } from 'react'
+
+//import { useWeb3React } from '../hooks'
+/*import {
   isAddress,
   getTokenName,
   getTokenSymbol,
@@ -9,7 +22,7 @@ import {
   getTokenExchangeAddressFromFactory,
   safeAccess
 } from '../utils'
-
+*/
 const NAME = 'name'
 const SYMBOL = 'symbol'
 const DECIMALS = 'decimals'

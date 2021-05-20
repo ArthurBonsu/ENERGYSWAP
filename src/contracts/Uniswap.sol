@@ -1,5 +1,5 @@
-pragma solidity ^0.5.5;
-
+//pragma solidity ^0.5.5;
+pragma solidity >=0.4.16 <0.9.0;
 import '../contracts/libraries/UniswapV2LiquidityMathLibrary.sol';
 import '../contracts/libraries/UniswapV2Library.sol';
 import '../contracts/libraries/UniswapV2OracleLibrary.sol';
@@ -10,6 +10,9 @@ import '../contracts/libraries/TransferHelper.sol';
 
 import '../contracts/interfaces/V1/IUniswapV1Factory.sol';
 import '../contracts/interfaces/V1/IUniswapV1Exchange.sol';
+import '../contracts/interfaces/IUniswapV2Router02.sol';
+import '../contracts/interfaces/IUniswapV2Pair.sol';
+
 import '../contracts/interfaces/IUniswapV2Router01.sol';
 import '../contracts/interfaces/IERC20.sol';
 import '../contracts/interfaces/IWETH.sol';
@@ -123,19 +126,24 @@ interface IUniswap{
   contract MyDefiProject is IERC20, IUniswapV2Callee, IWETH, IUniswapV2Router02  {
       
     address public factory;
-    address public router;
+    //address public router;
   
-    address public token0;
-    address public token1;
+    //address public token0;
+    //address public token1;
       
     uint112 private reserve0;           // uses single storage slot, accessible via getReserves
     uint112 private reserve1;           // uses single storage slot, accessible via getReserves
     uint32  private blockTimestampLast;
    //SWAPPING TOKENS HERE
-
+   
     address public  router2;
     address public  router1;
+    address public WETH;
+    address public token;
     
+    mapping(address => mapping(address => address)) public getPair;
+    address[] public allPairs;
+
     modifier ensure(uint deadline) {
         require(deadline >= block.timestamp, 'UniswapV2Router: EXPIRED');
         _;
@@ -144,14 +152,16 @@ interface IUniswap{
     
     IUniswapV2Router01 public  router;
     IUniswapV1Factory public swapfactory;
-    address public  factory;
-    constructor(address factory_, IUniswapV2Router01 router_) public {
+  
+    //address public  factory;
+  /*  constructor(address factory_, IUniswapV2Router01 router_) public {
         factory = factory_;
         router = router_;
     }
-
+*/
      constructor ( address _factory, address _router )  { 
          _factory = msg.sender;
+         factory =_factory;
          router1 =_router;
     //   uniswap = IUniswap(_uniswap);
      swapfactory  =  IUniswapV1Factory(_factory);
@@ -161,10 +171,9 @@ interface IUniswap{
    
   
 
-function fullswapprocessandswaptokenforeth(uint amountOut, address[] calldata path, address to, uint deadline)
+function fullswapprocessandswaptokenforeth(uint amountOut, address[] memory path, address to, uint deadline,address tokenA, address tokenB)
         external
-        virtual
-       
+        virtual       
         payable
         ensure(deadline)
         returns (uint[] memory amounts)
@@ -180,15 +189,34 @@ function fullswapprocessandswaptokenforeth(uint amountOut, address[] calldata pa
         
 
         // address of the two tokens, wonder why they call it path
-         address[] memory path = new address[](2);
+          path = new address[](2);
          // Set the pairs given
          //ROUTER'S JOB, ROUTING THE ETH TO THE VARIOUS NETWORKS
+         address token0;
+          address token1;
+        ( token0,  token1) =  IUniswapV2Pair.sortTokens(tokenA, tokenB);
+        (token0,  token1) =  IUniswapV2Pair.createPair(tokenA, tokenB);
+         
+            bytes memory bytecode = type(UniswapV2Pair).creationCode;
+        bytes32 salt = keccak256(abi.encodePacked(token0, token1));
+        assembly {
+            pair := create2(0, add(bytecode, 32), mload(bytecode), salt)
+        }
+         
+         IUniswapV2Pair(pair).initialize(token0, token1);
+         getPair[token0][token1] = pair;
+         getPair[token1][token0] = pair; // populate mapping in the reverse direction
+         allPairs.push(pair);
+         
+         
         path[0] =  IWETH.WETH();
         path[1] = token;        
         require(path[0] == WETH, 'UniswapV2Router: INVALID_PATH');
         
          uint totalSupply1 = IWETH.totalSupply();
+         // Total supply of token
          uint totalSupply2 = IERC20(path[1]).totalSupply();
+         
         //Normally we use this if we were swapping tokens to tokens, we can get the reserves of the tokens
          (uint reserveA, uint reserveB) = UniswapV2Library.getReserves(factory, tokenA, tokenB);
         
@@ -208,10 +236,7 @@ function fullswapprocessandswaptokenforeth(uint amountOut, address[] calldata pa
 
     }
 
-      function gettokenpairaddress(address token0_, address token1_ ) external returns (address pair){
-
-
-      }
+      
 
       //IF YOU WANT TO CREATE PAIR HERE, BUT IF USSING IN ANOTHER PROJECT YOU HAVE TO USE
       // FORPAIR SINCE THE PAIR IS ALREADY IS ALREADY CREATED
@@ -227,6 +252,8 @@ function fullswapprocessandswaptokenforeth(uint amountOut, address[] calldata pa
         assembly {
             pair := create2(0, add(bytecode, 32), mload(bytecode), salt)
         }
+
+        // the pair that is created is then initiated as token0, and 1
         IUniswapV2Pair(pair).initialize(token0, token1);
         getPair[token0][token1] = pair;
         getPair[token1][token0] = pair; // populate mapping in the reverse direction

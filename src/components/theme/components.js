@@ -1,6 +1,12 @@
-import styled, { keyframes } from 'styled-components'
-import { darken } from 'polished'
+const styled, { keyframes } =require( 'styled-components');
+const { darken } =require( 'polished');
 
+//import styled, { keyframes } =require( 'styled-components'
+//import { darken } =require( 'polished'
+
+//import styled, { keyframes } from 'styled-components'
+//import { darken } from 'polished'
+// THE THEME BUTTON
 export const Button = styled.button.attrs(({ warning, theme }) => ({
   backgroundColor: warning ? theme.salmonRed : theme.royalBlue
 }))`
@@ -30,7 +36,7 @@ export const Button = styled.button.attrs(({ warning, theme }) => ({
     cursor: auto;
   }
 `
-
+// THE LINK ON THE UI AND THE ATTIBUTES
 export const Link = styled.a.attrs({
   target: '_blank',
   rel: 'noopener noreferrer'
@@ -48,7 +54,7 @@ export const Link = styled.a.attrs({
     text-decoration: none;
   }
 `
-
+// THE BOARDERLESS INPUT
 export const BorderlessInput = styled.input`
   color: ${({ theme }) => theme.textColor};
   font-size: 1rem;

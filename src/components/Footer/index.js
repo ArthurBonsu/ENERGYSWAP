@@ -1,11 +1,22 @@
-import React from 'react'
-import ReactGA from 'react-ga'
-import styled from 'styled-components'
-import { darken, transparentize } from 'polished'
-import Toggle from 'react-switch'
+const React =require( 'react');
+const ReactGA =require('react-ga');
+const styled =require( 'styled-components');
+const { darken, transparentize } =require( 'polished');
+const Toggle =require('react-switch');
 
-import { Link } from '../../theme'
-import { useDarkModeManager } from '../../contexts/LocalStorage'
+const { Link } =require('../../theme');
+const { useDarkModeManager }=require( '../../contexts/LocalStorage');
+
+
+//import React from 'react'
+//import ReactGA from 'react-ga'
+//import styled from 'styled-components'
+//import { darken, transparentize } from 'polished'
+//import Toggle from 'react-switch'
+
+//import { Link } from '../../theme'
+//import { useDarkModeManager } from '../../contexts/LocalStorage'
+
 
 const FooterFrame = styled.div`
   display: flex;

@@ -1,21 +1,43 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useWeb3React } from '../../hooks'
-import { isMobile } from 'react-device-detect'
-import Copy from './Copy'
-import Transaction from './Transaction'
-import { SUPPORTED_WALLETS } from '../../constants'
-import { ReactComponent as Close } from '../../assets/images/x.svg'
-import { getEtherscanLink } from '../../utils'
-import { injected, walletconnect, walletlink, fortmatic, portis } from '../../connectors'
-import CoinbaseWalletIcon from '../../assets/images/coinbaseWalletIcon.svg'
-import WalletConnectIcon from '../../assets/images/walletConnectIcon.svg'
-import FortmaticIcon from '../../assets/images/fortmaticIcon.png'
-import PortisIcon from '../../assets/images/portisIcon.png'
-import Identicon from '../Identicon'
 
-import { Link } from '../../theme'
+const React = require('react');
+const styled =require ('styled-components');
+const { useWeb3React }= require('../../hooks');
+const { isMobile } =require('react-device-detect');
+const Copy =require ('./Copy');
+const Transaction =require('./Transaction');
+const { SUPPORTED_WALLETS } =require ('../../constants');
+const { ReactComponent as Close } =require ('../../assets/images/x.svg');
+const { getEtherscanLink } =require('../../utils');
+const { injected, walletconnect, walletlink, fortmatic, portis } =require('../../connectors');
+const CoinbaseWalletIcon =require ('../../assets/images/coinbaseWalletIcon.svg');
+const WalletConnectIcon =require ('../../assets/images/walletConnectIcon.svg');
+const FortmaticIcon =require ('../../assets/images/fortmaticIcon.png');
+const PortisIcon=require ( '../../assets/images/portisIcon.png');
+const Identicon =require('../Identicon');
+const { Link } =require ('../../theme');
 
+
+
+
+
+//import React from 'react'
+//import styled from 'styled-components'
+//import { useWeb3React } from '../../hooks'
+//import { isMobile } from 'react-device-detect'
+//import Copy from './Copy'
+//import Transaction from './Transaction'
+//import { SUPPORTED_WALLETS } from '../../constants'
+//import { ReactComponent as Close } from '../../assets/images/x.svg'
+//import { getEtherscanLink } from '../../utils'
+//import { injected, walletconnect, walletlink, fortmatic, portis } from '../../connectors'
+//import CoinbaseWalletIcon from '../../assets/images/coinbaseWalletIcon.svg'
+//import WalletConnectIcon from '../../assets/images/walletConnectIcon.svg'
+//import FortmaticIcon from '../../assets/images/fortmaticIcon.png'
+//import PortisIcon from '../../assets/images/portisIcon.png'
+//import Identicon from '../Identicon'
+//import { Link } from '../../theme'
+
+//INDEX HERE TAKES CONST OF STYLES AND OTHER CONSTANT INFORMATION THAT CAN BE USED AT OTHER PLACES
 const OptionButton = styled.div`
   ${({ theme }) => theme.flexColumnNoWrap}
   justify-content: center;
@@ -255,6 +277,7 @@ export default function AccountDetails({
       .map(k => SUPPORTED_WALLETS[k].name)[0]
     return <WalletName>{name}</WalletName>
   }
+
 
   function getStatusIcon() {
     if (connector === injected) {

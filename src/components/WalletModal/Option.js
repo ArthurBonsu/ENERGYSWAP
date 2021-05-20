@@ -1,6 +1,11 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Link } from '../../theme'
+const React =require( 'react');
+const styled=require('styled-components');
+const { Link } =require( '../../theme');
+
+
+//import React =require( 'react');
+//import styled =require( 'styled-components');
+//import { Link } =require( '../../theme');
 
 const InfoCard = styled.button`
   background-color: ${({ theme, active }) => (active ? theme.activeGray : theme.backgroundColor)};

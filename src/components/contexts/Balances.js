@@ -1,11 +1,22 @@
-import React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect, useRef, useState } from 'react'
-import { BigNumber } from '@uniswap/sdk'
+const React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect, useRef, useState } =require ('react');
+const { BigNumber } =require ('@uniswap/sdk');
 
-import { useWeb3React } from '../hooks'
-import { safeAccess, isAddress, getEtherBalance, getTokenBalance } from '../utils'
-import { useBlockNumber } from './Application'
-import { useTokenDetails, useAllTokenDetails } from './Tokens'
-import { getUSDPrice } from '../utils/price'
+const { useWeb3React } =require ('../hooks');
+const { safeAccess, isAddress, getEtherBalance, getTokenBalance } =require ('../utils');
+const { useBlockNumber } =require('./Application');
+const { useTokenDetails, useAllTokenDetails } =require('./Tokens');
+const { getUSDPrice } = require ('../utils/price');
+
+
+
+//import React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect, useRef, useState } from 'react'
+//import { BigNumber } from '@uniswap/sdk'
+
+//import { useWeb3React } from '../hooks'
+//import { safeAccess, isAddress, getEtherBalance, getTokenBalance } from '../utils'
+//import { useBlockNumber } from './Application'
+//import { useTokenDetails, useAllTokenDetails } from './Tokens'
+//import { getUSDPrice } from '../utils/price'
 
 const UPDATE = 'UPDATE'
 const UPDATE_ALL_FOR_ACCOUNT = 'UPDATE_ALL_FOR_ACCOUNT'

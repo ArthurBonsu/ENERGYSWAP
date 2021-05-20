@@ -1,8 +1,17 @@
-import React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect } from 'react'
+const React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect }=require ('react');
 
-import { useWeb3React } from '../hooks'
-import { safeAccess } from '../utils'
-import { useBlockNumber } from './Application'
+const { useWeb3React } =require ('../hooks');
+const { safeAccess } =require  ('../utils');
+const { useBlockNumber } =require ('./Application');
+
+
+
+//import React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect } from 'react'
+
+//import { useWeb3React } from '../hooks'
+//import { safeAccess } from '../utils'
+//import { useBlockNumber } from './Application'
+
 
 const RESPONSE = 'response'
 const CUSTOM_DATA = 'CUSTOM_DATA'

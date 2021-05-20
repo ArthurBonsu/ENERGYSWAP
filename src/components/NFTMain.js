@@ -1,42 +1,81 @@
-import ReactTypingEffect from 'react-typing-effect'
-import { buyNft } from '../store/interactions'
-import React, { Component } from 'react'
-import './App.css';
-import { connect } from 'react-redux'
-import Identicon from 'identicon.js'
-import Loading from './Loading'
-import Cards from './Cards';
-import ProjectMain from './ProjectMain'
-import Footer from '../Footer';
-import { update } from '../store/interactions'
-import Navbar from './Navbar'
-import {Color} from '../contracts/Color'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+const ReactTypingEffect =require('react-typing-effect');
+const { buyNft } =require( '../store/interactions');
+const React, { Component } =require( 'react');
+const App =require('./App.css');
+const { connect } =require( 'react-redux');
+const Identicon =require( 'identicon.js');
+const Loading =require( './Loading');
+const Cards =require( './Cards');
+const ProjectMain =require('./ProjectMain');
+const Footer =require('../Footer');
+const { update }=require( '../store/interactions');
+const Navbar =require( './Navbar');
+const {Color} =require( '../contracts/Color');
+// WHAT IS BROWSER ROUTER FOR , OH OKAY THE ROUES DEPEND ON IT REALLY
+const {BrowserRouter as Router, Switch, Route} =require( 'react-router-dom');
 
 
 //  Uniswap Your App
 // My Uniswap
-import UniswapApp from './UniswapApp'
+const UniswapApp =require( './UniswapApp');
 
 //Adding NFT and Uniswap Tab
 
 // Normal TopNavs
 
 // ITEMS TO BE FOUND ON THE NAV-BAR
-import Home from './components/pages/Home'
-import Services from './components/pages/Services'
-import Products from './components/pages/Products'
-import SignUp from './components/pages/SignUp'
-import Uniswap from './components/pages/UniswapApp1'
+const Home =require( './components/pages/Home');
+const Services=require( './components/pages/Services');
+const Products =require( './components/pages/Products');
+const SignUp =require( './components/pages/SignUp');
+const Uniswap =require('./components/pages/UniswapApp1');
 // NFT Main is not found in the main component due to routing issues so we keep it here to be  safe
-import NFTMain from  './NFTMain'
+const NFTMain =require(  './NFTMain');
 
-import {
-  contractSelector,
-  metadataSelector,
-  nftStateSelector,
-  networkSelector,
-} from '../store/selectors'
+const {contractSelector,  metadataSelector,  nftStateSelector,  networkSelector,} =require('../store/selectors');
+
+
+
+//import ReactTypingEffect from 'react-typing-effect'
+//import { buyNft } from '../store/interactions'
+//import React, { Component } from 'react'
+//import './App.css';
+//import { connect } from 'react-redux'
+//import Identicon from 'identicon.js'
+//import Loading from './Loading'
+//import Cards from './Cards';
+//import ProjectMain from './ProjectMain'
+//import Footer from '../Footer';
+//import { update } from '../store/interactions'
+//import Navbar from './Navbar'
+//import {Color} from '../contracts/Color'
+// WHAT IS BROWSER ROUTER FOR , OH OKAY THE ROUES DEPEND ON IT REALLY
+//import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+
+
+//  Uniswap Your App
+// My Uniswap
+//import UniswapApp from './UniswapApp'
+
+//Adding NFT and Uniswap Tab
+
+// Normal TopNavs
+
+// ITEMS TO BE FOUND ON THE NAV-BAR
+//import Home from './components/pages/Home'
+//import Services from './components/pages/Services'
+//import Products from './components/pages/Products'
+//import SignUp from './components/pages/SignUp'
+//import Uniswap from './components/pages/UniswapApp1'
+// NFT Main is not found in the main component due to routing issues so we keep it here to be  safe
+//import NFTMain from  './NFTMain'
+
+//import {
+//  contractSelector,
+ // metadataSelector,
+ // nftStateSelector,
+ // networkSelector,
+//} from '../store/selectors'
 
 
 
@@ -57,21 +96,25 @@ class NFTMain extends Component {
   }
 
   render() {
+
+
+    <Router>
+    <Navbar />
+    <Switch>
+      
+      <Route path='./components/pages/Home' exact component={Home} />
+      <Route path='./components/pages/UniswappApp1' exact component={UniswapApp1} />
+      <Route path='./components/pages/Services' component={Services} />
+      <Route path='./components/pages/Products' component={Products} />
+      <Route path='./components/pages/Signup' component={SignUp} />
+        <Route path='./NFTMain' component={NFTMain} />
+    </Switch>
+  </Router>
+   
+
     try {
       return (
-        <Router>
-        <Navbar />
-        <Switch>
-          
-          <Route path='./components/pages/Home' exact component={Home} />
-          <Route path='./components/pages/UniswappApp1' exact component={UniswapApp1} />
-          <Route path='./components/pages/Services' component={Services} />
-          <Route path='./components/pages/Products' component={Products} />
-          <Route path='./components/pages/Signup' component={SignUp} />
-            <Route path='./NFTMain' component={NFTMain} />
-        </Switch>
-      </Router>
-
+                 // THE DOMS
         <div className="Main">
           <div
             className="container-fluid mt-5"

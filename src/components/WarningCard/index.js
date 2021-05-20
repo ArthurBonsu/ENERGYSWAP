@@ -1,15 +1,27 @@
-import React, { useState } from 'react'
-import styled, { keyframes } from 'styled-components'
+const React, { useState }  =require( 'react');
+const styled, { keyframes }  =require( 'styled-components');
 
-import { useWeb3React } from '../../hooks'
-import { useTokenDetails } from '../../contexts/Tokens'
-import { getEtherscanLink } from '../../utils'
+const { useWeb3React }  =require('../../hooks');
+const { useTokenDetails } =require( '../../contexts/Tokens');
+const { getEtherscanLink } =require( '../../utils');
 
-import { Link } from '../../theme'
-import TokenLogo from '../TokenLogo'
-import { ReactComponent as Close } from '../../assets/images/x.svg'
-import question from '../../assets/images/question.svg'
+const { Link }  =require( '../../theme');
+const TokenLogo  =require( '../TokenLogo');
+const { ReactComponent as Close }  =require( '../../assets/images/x.svg');
+const question  =require( '../../assets/images/question.svg');
 
+
+//import React, { useState } from 'react'
+//import styled, { keyframes } from 'styled-components'
+
+//import { useWeb3React } from '../../hooks'
+//import { useTokenDetails } from '../../contexts/Tokens'
+//import { getEtherscanLink } from '../../utils'
+
+//import { Link } from '../../theme'
+//import TokenLogo from '../TokenLogo'
+//import { ReactComponent as Close } from '../../assets/images/x.svg'
+//import question from '../../assets/images/question.svg'
 const Flex = styled.div`
   display: flex;
   justify-content: center;

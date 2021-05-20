@@ -1,28 +1,61 @@
-
-import React, { Component,useState, useEffect } from 'react'
-import { connect } from 'react-redux'
-import Identicon from 'identicon.js'
-import eth from '../images/eth.png'
-import { Button } from './Button'
-import { Link } from 'react-router-dom'
-import {MenuItems} from "./MenuItems"
-import './Navbar.css'
+const React, { Component,useState, useEffect } =require( 'react');
+const { connect } =require( 'react-redux');
+const Identicon =require( 'identicon.js');
+const eth  =require( '../images/eth.png');
+const { Button } =require( './Button');
+const { Link } =require( 'react-router-dom');
+const {MenuItems}=require( "./MenuItems");
+const Navbar =require( './Navbar.css');
 
 // ITEMS TO BE FOUND ON THE NAV-BAR
-import Home from './components/pages/Home'
-import Services from './components/pages/Services'
-import Products from './components/pages/Products'
-import SignUp from './components/pages/SignUp'
-import Uniswap from './components/pages/UniswapApp1'
-import NFTMain from './NFTMain'
+const Home =require( './components/pages/Home');
+const Services =require( './components/pages/Services');
+const Products =require( './components/pages/Products');
+const SignUp =require( './components/pages/SignUp');
+const Uniswap=require('./components/pages/UniswapApp1');
+const NFTMain =require('./NFTMain');
+const {accountSelector} =require('../store/selectors')
+const {balanceSelector} =require('../store/selectors')
+const {networkSelector} =require('../store/selectors')
+const style =require('./Style.css')
 
-import {
-  accountSelector,
-  balanceSelector,
-  networkSelector,
-  web3Selector,
-} from '../store/selectors'
-import './Style.css'
+//const {
+//  accountSelector,
+ // balanceSelector,
+ // networkSelector,
+  //web3Selector,
+//} from '../store/selectors'
+//const './Style.css'
+ 
+
+
+
+
+
+//import React, { Component,useState, useEffect } from 'react'
+//import { connect } from 'react-redux'
+//import Identicon from 'identicon.js'
+//import eth from '../images/eth.png'
+//import { Button } from './Button'
+//import { Link } from 'react-router-dom'
+//import {MenuItems} from "./MenuItems"
+//import './Navbar.css'
+
+// ITEMS TO BE FOUND ON THE NAV-BAR
+//import Home from './components/pages/Home'
+//import Services from './components/pages/Services'
+//import Products from './components/pages/Products'
+//import SignUp from './components/pages/SignUp'
+//import Uniswap from './components/pages/UniswapApp1'
+//import NFTMain from './NFTMain'
+
+//import {
+  //accountSelector,
+  //balanceSelector,
+  //networkSelector,
+  //web3Selector,
+//} from '../store/selectors'
+//import './Style.css'
 
 class Navbar extends Component {
 

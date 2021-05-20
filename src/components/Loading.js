@@ -1,7 +1,12 @@
-import ReactTypingEffect from 'react-typing-effect';
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+const ReactTypingEffect =require( 'react-typing-effect');
+const React, { Component } =require( 'react');
+const { connect } =require( 'react-redux');
 
+
+
+//import ReactTypingEffect from 'react-typing-effect';
+//import React, { Component } from 'react'
+//import { connect } from 'react-redux'
 class Loading extends Component {
   render() {
     return(

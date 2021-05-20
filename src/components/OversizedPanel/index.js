@@ -1,6 +1,9 @@
-import React from 'react'
-import styled from 'styled-components'
+const React  =require( 'react');
+const styled  =require( 'styled-components');
 
+
+//import React from 'react'
+//import styled from 'styled-components'
 const Panel = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.concreteGray};

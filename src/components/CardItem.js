@@ -1,5 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+const React =require( 'react');
+const { Link } =require( 'react-router-dom');
+
+
+//import React from 'react';
+//import { Link } from 'react-router-dom';
+
+
 
 function CardItem(props) {
   return (

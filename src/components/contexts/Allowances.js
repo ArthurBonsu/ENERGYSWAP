@@ -1,9 +1,19 @@
-import React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect } from 'react'
-import {} from '@web3-react/core'
+// HAS ADDRESS AND REDUCER ITEMS HERE
 
-import { useWeb3React } from '../hooks'
-import { safeAccess, isAddress, getTokenAllowance } from '../utils'
-import { useBlockNumber } from './Application'
+const React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect } =require('react');
+const {} =require ('@web3-react/core');
+
+const { useWeb3React } =require ('../hooks');
+const { safeAccess, isAddress, getTokenAllowance } =require('../utils');
+const { useBlockNumber } =require ('./Application');
+
+
+//import React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect } from 'react'
+//import {} from '@web3-react/core'
+
+//import { useWeb3React } from '../hooks'
+//import { safeAccess, isAddress, getTokenAllowance } from '../utils'
+//import { useBlockNumber } from './Application'
 
 const UPDATE = 'UPDATE'
 
@@ -40,13 +50,16 @@ function reducer(state, { type, payload }) {
   }
 }
 
+// PROVIDER INFORMATION HERE
+// PROVIDER INFORMATION
 export default function Provider({ children }) {
   const [state, dispatch] = useReducer(reducer, {})
 
+  // USE CALLBACKS HAVE AN ISSUE 
   const update = useCallback((networkId, address, tokenAddress, spenderAddress, value, blockNumber) => {
     dispatch({ type: UPDATE, payload: { networkId, address, tokenAddress, spenderAddress, value, blockNumber } })
   }, [])
-
+ //
   return (
     <AllowancesContext.Provider value={useMemo(() => [state, { update }], [state, update])}>
       {children}

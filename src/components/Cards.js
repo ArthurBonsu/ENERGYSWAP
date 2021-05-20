@@ -1,7 +1,11 @@
-import React from 'react';
-import './Cards.css';
-import CardItem from './CardItem';
+const React =require('react');
+const Cards =require('./Cards.css');
+const CardItem =require('./CardItem');
 
+
+//import React from 'react';
+//import './Cards.css';
+//import CardItem from './CardItem';
 function Cards() {
   return (
     <div className='cards'>

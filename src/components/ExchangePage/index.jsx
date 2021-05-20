@@ -1,29 +1,60 @@
-import React, { useState, useReducer, useEffect } from 'react'
-import ReactGA from 'react-ga'
-import { createBrowserHistory } from 'history'
-import { ethers } from 'ethers'
-import styled from 'styled-components'
-import { useTranslation } from 'react-i18next'
+const React, { useState, useReducer, useEffect } =require('react');
+const ReactGA =require('react-ga');
+const { createBrowserHistory } =require('history');
+const { ethers } =require('ethers');
+const styled =require('styled-components');
+const { useTranslation } =require('react-i18next');
 
-import { useWeb3React } from '../../hooks'
-import { brokenTokens } from '../../constants'
-import { amountFormatter, calculateGasMargin, isAddress } from '../../utils'
+const { useWeb3React } =require( '../../hooks');
+const { brokenTokens } =require ('../../constants');
+const { amountFormatter, calculateGasMargin, isAddress } =require ('../../utils');
 
-import { useExchangeContract } from '../../hooks'
-import { useTokenDetails, INITIAL_TOKENS_CONTEXT } from '../../contexts/Tokens'
-import { useTransactionAdder } from '../../contexts/Transactions'
-import { useAddressBalance, useExchangeReserves } from '../../contexts/Balances'
-import { useAddressAllowance } from '../../contexts/Allowances'
-import { useWalletModalToggle } from '../../contexts/Application'
-import { useETHPriceInUSD } from '../../contexts/Balances'
+const { useExchangeContract } =require('../../hooks');
+const { useTokenDetails, INITIAL_TOKENS_CONTEXT } =require( '../../contexts/Tokens');
+const { useTransactionAdder } =require ('../../contexts/Transactions');
+const { useAddressBalance, useExchangeReserves } from '../../contexts/Balances'
+const { useAddressAllowance }  =require ( '../../contexts/Allowances');
+const { useWalletModalToggle }  =require ('../../contexts/Application');
+const { useETHPriceInUSD } =require ( '../../contexts/Balances');
 
-import { Button } from '../../theme'
-import CurrencyInputPanel from '../CurrencyInputPanel'
-import AddressInputPanel from '../AddressInputPanel'
-import OversizedPanel from '../OversizedPanel'
-import TransactionDetails from '../TransactionDetails'
-import ArrowDown from '../../assets/svg/SVGArrowDown'
-import WarningCard from '../WarningCard'
+const { Button }  =require ( '../../theme');
+const CurrencyInputPanel  =require ( '../CurrencyInputPanel');
+const AddressInputPanel  =require ( '../AddressInputPanel');
+const OversizedPanel  =require ( '../OversizedPanel');
+const TransactionDetails  =require ( '../TransactionDetails');
+const ArrowDown  =require ( '../../assets/svg/SVGArrowDown');
+const WarningCard  =require ( '../WarningCard');
+
+
+
+
+
+//import React, { useState, useReducer, useEffect } from 'react'
+//import ReactGA from 'react-ga'
+//import { createBrowserHistory } from 'history'
+//import { ethers } from 'ethers'
+//import styled from 'styled-components'
+//import { useTranslation } from 'react-i18next'
+
+//import { useWeb3React } from '../../hooks'
+//import { brokenTokens } from '../../constants'
+//import { amountFormatter, calculateGasMargin, isAddress } from '../../utils'
+
+//import { useExchangeContract } from '../../hooks'
+//import { useTokenDetails, INITIAL_TOKENS_CONTEXT } from '../../contexts/Tokens'
+//import { useTransactionAdder } from '../../contexts/Transactions'
+//import { useAddressBalance, useExchangeReserves } from '../../contexts/Balances'
+//import { useAddressAllowance } from '../../contexts/Allowances'
+//import { useWalletModalToggle } from '../../contexts/Application'
+//import { useETHPriceInUSD } from '../../contexts/Balances'
+
+//import { Button } from '../../theme'
+//import CurrencyInputPanel from '../CurrencyInputPanel'
+//import AddressInputPanel from '../AddressInputPanel'
+//import OversizedPanel from '../OversizedPanel'
+//import TransactionDetails from '../TransactionDetails'
+//import ArrowDown from '../../assets/svg/SVGArrowDown'
+//import WarningCard from '../WarningCard'
 
 const INPUT = 0
 const OUTPUT = 1
