@@ -19,7 +19,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
 
    
     address public   factory;
-    address public   WETH;
+    address public override   WETH;
 
     modifier ensure(uint deadline) {
         require(deadline >= block.timestamp, 'UniswapV2Router: EXPIRED');
@@ -75,7 +75,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
         uint amountBMin,
         address to,
         uint deadline
-    ) external  ensure(deadline) returns (uint amountA, uint amountB, uint liquidity) {
+    ) external override ensure(deadline) returns (uint amountA, uint amountB, uint liquidity) {
         (amountA, amountB) = _addLiquidity(tokenA, tokenB, amountADesired, amountBDesired, amountAMin, amountBMin);
         address pair = UniswapV2Library.pairFor(factory, tokenA, tokenB);
         TransferHelper.safeTransferFrom(tokenA, msg.sender, pair, amountA);

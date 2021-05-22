@@ -47,7 +47,7 @@ contract  NFT is ERC721Full, Ownable {
   }
 
   function _validate(uint _id) public payable {
-  	require(_exists(_id), "Error, wrong Token id"); //not exists
+  	require(ERC721Full._exists(_id), "Error, wrong Token id"); //not exists
     require(!sold[_id], "Error, Token is sold"); //already sold
     require(msg.value >= price[_id], "Error, Token costs more"); //costs more
   }

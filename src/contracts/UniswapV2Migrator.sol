@@ -26,7 +26,7 @@ contract UniswapV2Migrator is IUniswapV2Migrator {
  
     //THIS 
     function migrate(address token, uint amountTokenMin, uint amountETHMin, address to, uint deadline)
-        external
+        external override
  
     {
         IUniswapV1Exchange exchangeV1 = IUniswapV1Exchange(factoryV1.getExchange(token));

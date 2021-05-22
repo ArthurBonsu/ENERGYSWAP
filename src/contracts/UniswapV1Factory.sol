@@ -36,7 +36,7 @@ contract UniswapV1Factory {
     require(token != address(0));
     require(exchangeTemplate != address(0));
     require(token_to_exchange[token] == address(0));
-    UniswapExchange exchange = new UniswapExchange();
+    UniswapV1Exchange exchange = new UniswapV1Exchange();
     exchange.setup(token);
     token_to_exchange[token] = address(exchange);
     exchange_to_token[address(exchange)] = token;

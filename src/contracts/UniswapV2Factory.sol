@@ -4,10 +4,10 @@ import './interfaces/IUniswapV2Factory.sol';
 import './UniswapV2Pair.sol';
 
 contract UniswapV2Factory is IUniswapV2Factory {
-    address public feeTo;
-    address public feeToSetter;
+    address public override feeTo;
+    address public override feeToSetter;
 
-    mapping(address => mapping(address => address)) public getPair;
+    mapping(address => mapping(address => address)) public override getPair;
     address[] public allPairs;
 
     event PairCreated(address indexed token0, address indexed token1, address pair, uint);
@@ -24,7 +24,7 @@ contract UniswapV2Factory is IUniswapV2Factory {
           // THIS IS THE FULL IMPLEMENTATION OF THE PAIRING
           //WE CREATE THE PAIRS AND CREATE THE COST OF TRANSFERS
 
-    function createPair(address tokenA, address tokenB) external returns (address pair) {
+    function createPair(address tokenA, address tokenB) external override returns (address pair) {
         require(tokenA != tokenB, 'UniswapV2: IDENTICAL_ADDRESSES');
          // Under the uniswap side library these are rendered token 0 and 1
          // We make sure they are in the right order
@@ -48,12 +48,12 @@ contract UniswapV2Factory is IUniswapV2Factory {
           // WE SET THE FEE CHARGES TO WHOEVER IS ADDRESS RECEIVING THE FEE
           // THIS IS TO SET THE FEES FOR THE POOL AND THE TRANSACTIONS PAYMENT, WELL COULD BE OTHER
           //PAYMENT YET TO CONFIRM
-    function setFeeTo(address _feeTo) external {
+    function setFeeTo(address _feeTo) external override {
         require(msg.sender == feeToSetter, 'UniswapV2: FORBIDDEN');
         feeTo = _feeTo;
     }
          // WE SET THE FEES OF THE PERSON WE ARE SETTING THE ADDRESS TO 
-    function setFeeToSetter(address _feeToSetter) external {
+    function setFeeToSetter(address _feeToSetter) external override {
         require(msg.sender == feeToSetter, 'UniswapV2: FORBIDDEN');
         feeToSetter = _feeToSetter;
     }

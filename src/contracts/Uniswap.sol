@@ -1,23 +1,26 @@
 //pragma solidity ^0.5.5;
 pragma solidity >=0.4.16 <0.9.0;
-import '../contracts/libraries/UniswapV2LiquidityMathLibrary.sol';
-import '../contracts/libraries/UniswapV2Library.sol';
-import '../contracts/libraries/UniswapV2OracleLibrary.sol';
+
+import './UniswapV2Pair.sol';
+//import '../contracts/libraries/UniswapV2Library.sol';
+
+//import  '@uniswap/v2-core/contracts/libraries/IUniswapV2Pair.sol';
 // I NEED TO GET THESE TWO INTERFACES TO WORK WITH V1
 import '../contracts/interfaces/IUniswapV2Callee.sol';
 import '../contracts/libraries/TransferHelper.sol';
 
-
+import  '../contracts/interfaces/IUniswapV2Library.sol';
 import '../contracts/interfaces/V1/IUniswapV1Factory.sol';
 import '../contracts/interfaces/V1/IUniswapV1Exchange.sol';
 import '../contracts/interfaces/IUniswapV2Router02.sol';
-import '../contracts/interfaces/IUniswapV2Pair.sol';
+//import '../contracts/interfaces/IUniswapV2Pair.sol';
 
 import '../contracts/interfaces/IUniswapV2Router01.sol';
 import '../contracts/interfaces/IERC20.sol';
 import '../contracts/interfaces/IWETH.sol';
-
-
+//import '../contracts/libraries/UniswapV2LiquidityMathLibrary.sol';
+//import '../contracts/libraries/UniswapV2Library.sol';
+//import '../contracts/libraries/UniswapV2OracleLibrary.sol';
 /*
 interface IUniswap{
     function swapExactTokensForEth(
@@ -123,7 +126,7 @@ interface IUniswap{
   // UniswapFactorymustbegiven here
 
 */
-  contract MyDefiProject is IERC20, IUniswapV2Callee, IWETH, IUniswapV2Router02  {
+  contract MyDefiProject is IERC20, IUniswapV2Callee, IWETH, IUniswapV2Router02, IUniswapV2Pair,IUniswapV2Library  {
       
     address public factory;
     //address public router;
@@ -140,6 +143,7 @@ interface IUniswap{
     address public  router1;
     address public WETH;
     address public token;
+    address public pair;
     
     mapping(address => mapping(address => address)) public getPair;
     address[] public allPairs;
@@ -215,17 +219,18 @@ function fullswapprocessandswaptokenforeth(uint amountOut, address[] memory path
         
          uint totalSupply1 = IWETH.totalSupply();
          // Total supply of token
+
          uint totalSupply2 = IERC20(path[1]).totalSupply();
          
         //Normally we use this if we were swapping tokens to tokens, we can get the reserves of the tokens
-         (uint reserveA, uint reserveB) = UniswapV2Library.getReserves(factory, tokenA, tokenB);
+         (uint reserveA, uint reserveB) = IUniswapV2Library.getReserves(factory, tokenA, tokenB);
         
-        amounts = UniswapV2Library.getAmountsIn(factory, amountOut, path);
+        amounts = IUniswapV2Library.getAmountsIn(factory, amountOut, path);
           //ON A V2 NETWORK NOT REQUIRING SWITCH BETWEEN V1 AND V2
         require(amounts[0] <= msg.value, 'UniswapV2Router: EXCESSIVE_INPUT_AMOUNT');
         IWETH(WETH).deposit(amounts[0]);
-        assert(IWETH(WETH).transfer(UniswapV2Library.pairFor(factory, path[0], path[1]), amounts[0]));
-         assert(IWETH(WETH).transferFrom(UniswapV2Library.pairFor(factory, path[0], path[1]), amounts[0]));
+        assert(IWETH(WETH).transfer(IUniswapV2Library.pairFor(factory, path[0], path[1]), amounts[0]));
+         assert(IWETH(WETH).transferFrom(IUniswapV2Library.pairFor(factory, path[0], path[1]), amounts[0]));
          IERC20(IWETH(WETH)).approve();
         IUniswapV2Router02.swapTokensForExactETH(amounts,0, path,  to,  deadline); 
        // _swap(amounts, path, to);
@@ -240,7 +245,7 @@ function fullswapprocessandswaptokenforeth(uint amountOut, address[] memory path
 
       //IF YOU WANT TO CREATE PAIR HERE, BUT IF USSING IN ANOTHER PROJECT YOU HAVE TO USE
       // FORPAIR SINCE THE PAIR IS ALREADY IS ALREADY CREATED
-   function createPair(address tokenA, address tokenB) external returns (address pair) {
+   function createPair(address tokenA, address tokenB) external returns (address _pair) {
         require(tokenA != tokenB, 'UniswapV2: IDENTICAL_ADDRESSES');
         (address token0, address token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
         require(token0 != address(0), 'UniswapV2: ZERO_ADDRESS');
@@ -249,6 +254,7 @@ function fullswapprocessandswaptokenforeth(uint amountOut, address[] memory path
         
         bytes memory bytecode = type(UniswapV2Pair).creationCode;
         bytes32 salt = keccak256(abi.encodePacked(token0, token1));
+        pair = _pair;
         assembly {
             pair := create2(0, add(bytecode, 32), mload(bytecode), salt)
         }
@@ -258,7 +264,7 @@ function fullswapprocessandswaptokenforeth(uint amountOut, address[] memory path
         getPair[token0][token1] = pair;
         getPair[token1][token0] = pair; // populate mapping in the reverse direction
         allPairs.push(pair);
-        emit PairCreated(token0, token1, pair, allPairs.length);
+     //   emit PairCreated(token0, token1, pair, allPairs.length);
     }
 
 /*

@@ -10,19 +10,22 @@ import "./interfaces/IERC20.sol";
 import "./interfaces/V1/IUniswapV1Factory.sol";
 import "./interfaces/V1/IUniswapV1Exchange.sol";
 
-contract UniswapV1Exchange is ERC20 {
+contract UniswapV1Exchange is IERC20 {
 
   /***********************************|
   |        Variables && Events        |
   |__________________________________*/
 
   // Variables
-  bytes32 public name;         // Uniswap V1
-  bytes32 public symbol;       // UNI-V1
-  uint256 public decimals;     // 18
+  bytes32 public override name;         // Uniswap V1
+  bytes32 public override symbol;       // UNI-V1
+  uint256 public override decimals;     // 18
+  address public _totalSupply; // total supply
   IERC20 token;                // address of the ERC20 token traded on this contract
-  IUniswapFactory factory;     // interface for the factory that created this contract
+  IUniswapV1Factory factory;     // interface for the factory that created this contract
   
+   mapping(address => mapping(address => address)) public _balances;
+
   // Events
   event TokenPurchase(address indexed buyer, uint256 indexed eth_sold, uint256 indexed tokens_bought);
   event EthPurchase(address indexed buyer, uint256 indexed tokens_sold, uint256 indexed eth_bought);
@@ -43,7 +46,7 @@ contract UniswapV1Exchange is ERC20 {
       address(factory) == address(0) && address(token) == address(0) && token_addr != address(0), 
       "INVALID_ADDRESS"
     );
-    factory = IUniswapFactory(msg.sender);
+    factory = IUniswapV1Factory(msg.sender);
     token = IERC20(token_addr);
     name = 0x556e697377617020563100000000000000000000000000000000000000000000;
     symbol = 0x554e492d56310000000000000000000000000000000000000000000000000000;
@@ -260,7 +263,7 @@ contract UniswapV1Exchange is ERC20 {
     uint256 wei_bought = eth_bought;
     require(wei_bought >= min_eth_bought);
     require(token.transferFrom(buyer, address(this), tokens_sold));
-    uint256 tokens_bought = IUniswapExchange(exchange_addr).ethToTokenTransferInput.value(wei_bought)(min_tokens_bought, deadline, recipient);
+    uint256 tokens_bought = IUniswapV1Exchange(exchange_addr).ethToTokenTransferInput.value(wei_bought)(min_tokens_bought, deadline, recipient);
     emit EthPurchase(buyer, tokens_sold, wei_bought);
     return tokens_bought;
   }
@@ -324,13 +327,13 @@ contract UniswapV1Exchange is ERC20 {
   {
     require(deadline >= block.timestamp && (tokens_bought > 0 && max_eth_sold > 0));
     require(exchange_addr != address(this) && exchange_addr != address(0));
-    uint256 eth_bought = IUniswapExchange(exchange_addr).getEthToTokenOutputPrice(tokens_bought);
+    uint256 eth_bought = IUniswapV1Exchange(exchange_addr).getEthToTokenOutputPrice(tokens_bought);
     uint256 token_reserve = token.balanceOf(address(this));
     uint256 tokens_sold = getOutputPrice(eth_bought, token_reserve, address(this).balance);
     // tokens sold is always > 0
     require(max_tokens_sold >= tokens_sold && max_eth_sold >= eth_bought);
     require(token.transferFrom(buyer, address(this), tokens_sold));
-    uint256 eth_sold = IUniswapExchange(exchange_addr).ethToTokenTransferOutput.value(eth_bought)(tokens_bought, deadline, recipient);
+    uint256 eth_sold = IUniswapV1Exchange(exchange_addr).ethToTokenTransferOutput.value(eth_bought)(tokens_bought, deadline, recipient);
     emit EthPurchase(buyer, tokens_sold, eth_bought);
     return tokens_sold;
   }
