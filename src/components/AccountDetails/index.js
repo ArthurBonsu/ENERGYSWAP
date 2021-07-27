@@ -1,4 +1,5 @@
 
+// For Connecting And INterracting With Metamask To get Details
 const React = require('react');
 const styled =require ('styled-components');
 const { useWeb3React }= require('../../hooks');
@@ -247,11 +248,14 @@ const WalletAction = styled.div`
 const MainWalletAction = styled(WalletAction)`
   color: ${({ theme }) => theme.royalBlue};
 `
-
+   // Transaction List Wrapper, stores the hashes and pending transactions coming up
+   //from places such as swap
 function renderTransactions(transactions, pending) {
   return (
+    // Transaction List wrapers helps us to pass the values to 
     <TransactionListWrapper>
       {transactions.map((hash, i) => {
+        // We pass the pending into the transaction
         return <Transaction key={i} hash={hash} pending={pending} />
       })}
     </TransactionListWrapper>
@@ -259,6 +263,8 @@ function renderTransactions(transactions, pending) {
 }
 
 export default function AccountDetails({
+ // account details takes the vallues, toggling wallet, pending transactins, confirmed transactions, 
+ //the ENS name, and open options
   toggleWalletModal,
   pendingTransactions,
   confirmedTransactions,
@@ -266,9 +272,10 @@ export default function AccountDetails({
   openOptions
 }) {
   const { chainId, account, connector } = useWeb3React()
-
+// Formattername list of connectors
   function formatConnectorName() {
     const isMetaMask = window.ethereum && window.ethereum.isMetaMask ? true : false
+     // OBJECT IDENTIFIERS FOR SUPPORTED WALLETS , used to  store supported wallets
     const name = Object.keys(SUPPORTED_WALLETS)
       .filter(
         k =>

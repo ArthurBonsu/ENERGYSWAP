@@ -53,7 +53,9 @@ const ETHERSCAN_PREFIXES = {
   5: 'goerli.',
   42: 'kovan.'
 }
-
+// Contains the link to swith to Etherscan, 
+//It is used whenever whenever we want to switch to Etherscan 
+//We connect it to the Etherscan prefix stored in constants
 export function getEtherscanLink(networkId, data, type) {
   const prefix = `https://${ETHERSCAN_PREFIXES[networkId] || ETHERSCAN_PREFIXES[1]}etherscan.io`
 
@@ -193,6 +195,8 @@ export function getContract(address, ABI, library, account) {
 }
 
 // account is optional
+
+// THIS IS HOW WE GET A SMART CONTRACT FROM THE SOLIDITY
 export function getFactoryContract(networkId, library, account) {
   return getContract(FACTORY_ADDRESSES[networkId], FACTORY_ABI, library, account)
 }

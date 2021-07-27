@@ -1,4 +1,8 @@
 const React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect } =require ('react');
+// THIS IS CONTEXT
+// AND THE OTHER IS HOOKS?
+
+// WHAT IS THE DIFFERENCE BETWEEN THE HOOKS AND THE CONTEXT
 
 const UNISWAP = 'UNISWAP'
 
@@ -20,12 +24,17 @@ const UPDATABLE_KEYS = [
 
 const UPDATE_KEY = 'UPDATE_KEY'
 
+// WE ARE USING CONTEXT HERE CREATED
 const LocalStorageContext = createContext()
-
+// FIRST CONTEXT TO BE SENT -THIS FUNCTION IS TO ENSURE A WAY TO USE LOCAL CONTEXT HERE 
 function useLocalStorageContext() {
+
+  //USECONTEXT ENSURE THE ABILITY TO USE CONTEXT 
   return useContext(LocalStorageContext)
 }
 
+
+// THE REDUCER ,
 function reducer(state, { type, payload }) {
   switch (type) {
     case UPDATE_KEY: {
@@ -45,6 +54,7 @@ function reducer(state, { type, payload }) {
   }
 }
 
+// THIS IS AN ARRAY INITIATION OF ITEMS AND CONSTANTS
 function init() {
   const defaultLocalStorage = {
     [VERSION]: CURRENT_VERSION,
@@ -54,10 +64,14 @@ function init() {
     [DARK_MODE]: true
   }
 
+   // WE PASS THE KEY VALUE PAIR INTO THE BROWSER FOR USAGE
   try {
+     // AN object of parsed is created
     const parsed = JSON.parse(window.localStorage.getItem(UNISWAP))
+       //we parse the version into the Uniswap Parse created
     if (parsed[VERSION] !== CURRENT_VERSION) {
       // this is where we could run migration logic
+      // we get the defaultStorageValue
       return defaultLocalStorage
     } else {
       return { ...defaultLocalStorage, ...parsed }
@@ -66,6 +80,10 @@ function init() {
     return defaultLocalStorage
   }
 }
+
+// PROVIDERS ARE BEING USED WITH REDUCERS
+//CONTEXT ARE BEING USED WITH REDUCERS
+//THINGS TO STUDY , PROVIDERS, CONTEXT, REDUCERS, CALLBACKS, HOOKS, REDUX,STYLES, MEMOS, UI COMPONENTS, TYPESCRIPTS 
 
 export default function Provider({ children }) {
   const [state, dispatch] = useReducer(reducer, undefined, init)

@@ -7,12 +7,18 @@ const copy =require( 'copy-to-clipboard');
 const { isMobile } =require( 'react-device-detect');
 
 // WE GET THE CONTRACT BEFORE HOOKS HERE
-
+   
+   // The network contextname takes the specific infor of the network
+ // does it take the bytes data too?
 const { NetworkContextName } =require( '../constants');
 const ERC20_ABI =require( '../constants/abis/erc20');
+
+// The contracts are also passed into Hooks? 
 const { getContract, getFactoryContract, getExchangeContract, isAddress } =require(  '../utils');
 
 // WE USE THE INJECT
+
+// uNDERSTAND THE CONNECTORS
 const { injected } =require( '../connectors');
 
 
@@ -42,18 +48,28 @@ const { injected } =require( '../connectors');
 // THE CONTRACTS THERE ARE THE EXCHANGE CONTRACTS HERE AND THE  FACTORY CONTRACTS HERE
 // THE FULL CONTRACTS INVOLVE NETWORKCONTEXT HERE AND IT PICKS IT UP
 export function useWeb3React() {
+  // whERE OD EWE GET HE REACT CORE?
   const context = useWeb3ReactCore()
+
+  //Change to specific network concetext
   const contextNetwork = useWeb3ReactCore(NetworkContextName)
 
+ // Context is from UseWeb3reactCore
   return context.active ? context : contextNetwork
 }
+
+//USEweb3react finding it
+//context.active
 
 // HOOK HERE 
 // METAMASK CONNECTS HERE, WE GET THE COONNECTOR 
 
 export function useEagerConnect() {
 
+//MAIN CODE USEWEB3REACTCORE 
    // HOOK IS PASSED TO TAKE THE CONTEXT AND VALUES MUCH LIKE CONTEXT
+  
+  //THis is the active and inactive hooks for UseReactCore and it is gleaned from UseEagerConnect
   const { activate, active } = useWeb3ReactCore() // specifically using useWeb3ReactCore because of what this hook does
 
   const [tried, setTried] = useState(false)
@@ -61,6 +77,9 @@ export function useEagerConnect() {
   useEffect(() => {
     injected.isAuthorized().then(isAuthorized => {
       if (isAuthorized) {
+
+        //activate is from UseWeb3ReactHook (Perculiar seeing the hook can be placed in other hooks)
+        //Where was activate implemented -Check the connector
         activate(injected, undefined, true).catch(() => {
           setTried(true)
         })
@@ -95,6 +114,7 @@ export function useEagerConnect() {
  // THE INACTIVELISTENER , HANDLE NETWORK CHANGES
 
  // CHECKING INACTIVE LISTENER INFORMATION HERE
+ //Listens and checks if the connection is inactive
 export function useInactiveListener(suppress = false) {
   const { active, error, activate } = useWeb3ReactCore() // specifically using useWeb3React because of what this hook does
       // HAVE TO CHECK FOR METAMASK TOO
@@ -102,6 +122,7 @@ export function useInactiveListener(suppress = false) {
     const { ethereum } = window
 
     if (ethereum && ethereum.on && !active && !error && !suppress) {
+      // The various functons and handlers, handlechainchanged, handleaccountschanged,handlenetworkchange
       const handleChainChanged = () => {
         // eat errors
         activate(injected, undefined, true).catch(() => {})
@@ -142,6 +163,8 @@ export function useInactiveListener(suppress = false) {
 
 // SET USEDEBOUNCE VALUE
 export function useDebounce(value, delay) {
+
+  // We are debouncing the value and the page value
   const [debouncedValue, setDebouncedValue] = useState(value)
 
   useEffect(() => {
@@ -163,7 +186,11 @@ export function useDebounce(value, delay) {
 
 // modified from https://usehooks.com/useKeyPress/
 // THE BODYKEY DOWN
+
+
 export function useBodyKeyDown(targetKey, onKeyDown, suppressOnKeyDown = false) {
+  
+   // We handle the down debounce and we leverage a callBack
   const downHandler = useCallback(
     event => {
       const {
@@ -172,6 +199,7 @@ export function useBodyKeyDown(targetKey, onKeyDown, suppressOnKeyDown = false) 
       } = event
       if (key === targetKey && tagName === 'BODY' && !suppressOnKeyDown) {
         event.preventDefault()
+        // initiate what happens when the key is opened
         onKeyDown()
       }
     },
@@ -189,6 +217,7 @@ export function useBodyKeyDown(targetKey, onKeyDown, suppressOnKeyDown = false) 
 //WE GET THE ENS NAME HERE
 // WE GET THE ETHEREUM NETWORK ADDRESS, IS IT ALSO IN CONSTANTS , CONTEXT TOO, CONNECTORS
 export function useENSName(address) {
+  //library from useWeb3react, no library in this custom hooks
   const { library } = useWeb3React()
 
   const [ENSName, setENSName] = useState()
@@ -248,6 +277,7 @@ export function useTokenContract(tokenAddress, withSignerIfPossible = true) {
 
   return useMemo(() => {
     try {
+      // getContract or contract interraction takes the library, signer and the rest of the info
       return getContract(tokenAddress, ERC20_ABI, library, withSignerIfPossible ? account : undefined)
     } catch {
       return null
@@ -257,7 +287,10 @@ export function useTokenContract(tokenAddress, withSignerIfPossible = true) {
 
 // returns null on errors
 
- // factory contracts here
+ // factory contracts here 
+
+    // custome hook for factory contract
+    // wgere us useWeb3React()? 
 export function useFactoryContract(withSignerIfPossible = true) {
   const { chainId, library, account } = useWeb3React()
 
@@ -284,9 +317,12 @@ export function useExchangeContract(exchangeAddress, withSignerIfPossible = true
     }
   }, [exchangeAddress, library, withSignerIfPossible, account])
 }
+ 
 
+ // export function useTokenPricesContract
 
  // COPY CLIIPBOARD, USE IT TO COPY STUFF
+ // clipboard information here( is copied or not copiedn)
 export function useCopyClipboard(timeout = 500) {
   const [isCopied, setIsCopied] = useState(false)
 
@@ -309,6 +345,7 @@ export function useCopyClipboard(timeout = 500) {
 
   return [isCopied, staticCopy]
 }
+// UseEffect, Callback, UseDebounce, UseMemo
 
 // modified from https://usehooks.com/usePrevious/
 

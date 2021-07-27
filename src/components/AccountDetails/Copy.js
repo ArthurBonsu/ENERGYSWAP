@@ -1,4 +1,6 @@
 
+
+//For Copying
 const React = require('react');
 const styled = require('styled-components');
 const {useCopyClipboard} = require('../../hooks');
@@ -36,6 +38,8 @@ const TransactionStatusText = styled.span`
 export default function CopyHelper({ toCopy }) {
   const [isCopied, setCopied] = useCopyClipboard()
 
+
+  // tocopy is the value we pass through the CopyIcon
   return (
     <CopyIcon onClick={() => setCopied(toCopy)}>
       {isCopied ? (

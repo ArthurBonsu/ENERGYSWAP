@@ -108,7 +108,7 @@ const HiddenCloseButton = styled.button`
   height: 0;
   border: none;
 `
-
+ // Is it a general Modal For All The Screen
 export default function Modal({ isOpen, onDismiss, minHeight = false, maxHeight = 50, initialFocusRef, children }) {
   const transitions = useTransition(isOpen, null, {
     config: { duration: 200 },
@@ -116,6 +116,7 @@ export default function Modal({ isOpen, onDismiss, minHeight = false, maxHeight 
     enter: { opacity: 1 },
     leave: { opacity: 0 }
   })
+  
 
   const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }))
   const bind = useGesture({
@@ -129,7 +130,7 @@ export default function Modal({ isOpen, onDismiss, minHeight = false, maxHeight 
       }
       set({
         xy: state.down ? state.movement : [0, 0],
-        config: { mass: 1, tension: 210, friction: 20 }
+        config: { mass: 1, tensioninitialFocusRef: 210, friction: 20 }
       })
       if (velocity > 3 && state.direction[1] > 0) {
         onDismiss()

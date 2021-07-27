@@ -20,6 +20,8 @@ const { NetworkContextName } =require( '../../constants');
 //import { Spinner } from '../../theme'
 //import Circle from '../../assets/images/circle.svg'
 //import { NetworkContextName } from '../../constants'
+
+// Message Wrapper
 const MessageWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -27,10 +29,12 @@ const MessageWrapper = styled.div`
   height: 20rem;
 `
 
+
+//Message Here
 const Message = styled.h2`
   color: ${({ theme }) => theme.uniswapPink};
 `
-
+// Spinner Here
 const SpinnerWrapper = styled(Spinner)`
   font-size: 4rem;
 
@@ -40,10 +44,12 @@ const SpinnerWrapper = styled(Spinner)`
     }
   }
 `
-
+// Web3 React Manager..watch out for use translation
 export default function Web3ReactManager({ children }) {
   const { t } = useTranslation()
   const { active } = useWeb3React()
+
+  // parameter set for the useWeb3ReactHoook
   const { active: networkActive, error: networkError, activate: activateNetwork } = useWeb3React(NetworkContextName)
 
   // try to eagerly connect to an injected provider, if it exists and has granted access already

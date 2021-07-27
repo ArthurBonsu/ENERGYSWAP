@@ -45,6 +45,7 @@ contract UniswapV2Migrator is IUniswapV2Migrator {
             to,
             deadline
         );
+
         if (amountTokenV1 > amountTokenV2) {
             TransferHelper.safeApprove(token, address(router), 0); // be a good blockchain citizen, reset allowance to 0
             TransferHelper.safeTransfer(token, msg.sender, amountTokenV1 - amountTokenV2);

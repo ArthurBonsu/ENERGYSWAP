@@ -35,6 +35,7 @@ export const Button = ({
     ? buttonStyle
     : STYLES[0];
 
+    // Add the specific button style, else set it to btn-medium
   const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
 
   return (

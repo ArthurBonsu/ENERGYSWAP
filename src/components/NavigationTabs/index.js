@@ -35,15 +35,18 @@ const { Link } from=require( '../../theme/components');
 
 const tabOrder = [
   {
+    // for the swap button
     path: '/swap',
     textKey: 'swap',
     regex: /\/swap/
   },
+  // for the send button
   {
     path: '/send',
     textKey: 'send',
     regex: /\/send/
   },
+   // for adding liquididty button
   {
     path: '/add-liquidity',
     textKey: 'pool',
@@ -51,6 +54,7 @@ const tabOrder = [
   }
 ]
 
+ // style for beta message, wrapping around the betta message
 const BetaMessage = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
   cursor: pointer;
@@ -80,6 +84,8 @@ const BetaMessage = styled.div`
   }
 `
 
+
+// button around dai message, the style around the dai
 const DaiMessage = styled(BetaMessage)`
   ${({ theme }) => theme.flexColumnNoWrap}
   position: relative;
@@ -98,7 +104,7 @@ const DaiMessage = styled(BetaMessage)`
     content: '';
   }
 `
-
+     // style for the close button
 const CloseIcon = styled.div`
   width: 10px !important;
   top: 0.5rem;
@@ -109,20 +115,21 @@ const CloseIcon = styled.div`
     cursor: pointer;
   }
 `
-
+ // the header for the warning 
 const WarningHeader = styled.div`
   margin-bottom: 10px;
   font-weight: 500;
   color: ${({ theme }) => theme.uniswapPink};
 `
 
+// the footer design for the warning
 const WarningFooter = styled.div`
   margin-top: 10px;
   font-size: 10px;
   text-decoration: italic;
   color: ${({ theme }) => theme.greyText};
 `
-
+// The tabs information
 const Tabs = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: center;
@@ -172,6 +179,7 @@ const StyledNavLink = styled(NavLink).attrs({
   }
 `
 
+// NavigationalTabls is main funcrion
 function NavigationTabs({ location: { pathname }, history }) {
   const { t } = useTranslation()
 
@@ -189,13 +197,24 @@ function NavigationTabs({ location: { pathname }, history }) {
 
   const onLiquidityPage = pathname === '/pool' || pathname === '/add-liquidity' || pathname === '/remove-liquidity'
 
+
+  // navigate information here
+
+  //This call back functions sets the action whenever the tabs are clicked
   const navigate = useCallback(
     direction => {
+      // we want to grab the tab index here
+      // we create the index using the regular expression
       const tabIndex = tabOrder.findIndex(({ regex }) => pathname.match(regex))
+      // We push it into the links already visited
+                      // We know throught the taborder created
       history.push(tabOrder[(tabIndex + tabOrder.length + direction) % tabOrder.length].path)
     },
     [pathname, history]
   )
+
+  // For navigating to previous and the next tabs. This is used to show the next link and previous links
+
   const navigateRight = useCallback(() => {
     navigate(1)
   }, [navigate])
@@ -203,16 +222,21 @@ function NavigationTabs({ location: { pathname }, history }) {
     navigate(-1)
   }, [navigate])
 
+  // Keyboard alternative for going back and forth the arrow
   useBodyKeyDown('ArrowRight', navigateRight)
   useBodyKeyDown('ArrowLeft', navigateLeft)
 
   const providerMessage =
-    showSaiHolderMessage && daiPoolTokenBalance && !daiPoolTokenBalance.isZero() && onLiquidityPage
+  // showing the sai holder message, show the general message
+  showSaiHolderMessage && daiPoolTokenBalance && !daiPoolTokenBalance.isZero() && onLiquidityPage
+    // show general message
   const generalMessage = showGeneralDaiMessage && daiBalance && !daiBalance.isZero()
 
   return (
+    // The tabs that will be displayed containse the info of the path selected
     <>
       <Tabs>
+        
         {tabOrder.map(({ path, textKey, regex }) => (
           <StyledNavLink key={path} to={path} isActive={(_, { pathname }) => pathname.match(regex)}>
             {t(textKey)}
@@ -254,7 +278,8 @@ function NavigationTabs({ location: { pathname }, history }) {
           </div>
         </DaiMessage>
       )}
-      {showBetaMessage && (
+      
+       {showBetaMessage && (
         <BetaMessage onClick={dismissBetaMessage}>
           <span role="img" aria-label="warning">
             💀

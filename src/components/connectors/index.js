@@ -21,13 +21,16 @@ const  { FortmaticConnector } = require ('./Fortmatic');
 
 
 // THIS IS WHERE THE INDEX JS IS HERE 
-// THIS IS THE FORTMATIC CONNECTOR HERE 
+// THIS IS THE FORTMATIC CONNECTOR HERE
+//THIS IS HOW THE WEB-3 CONNECTION REACTORS IS DONE 
+
 const POLLING_INTERVAL = 10000
 const NETWORK_URL =
   process.env.REACT_APP_IS_PRODUCTION_DEPLOY === 'true'
     ? process.env.REACT_APP_NETWORK_URL_PROD
     : process.env.REACT_APP_NETWORK_URL
 
+    // Network Connector is found here
 export const network = new NetworkConnector({
   urls: { [Number(process.env.REACT_APP_CHAIN_ID)]: NETWORK_URL },
   pollingInterval: POLLING_INTERVAL * 3
@@ -64,3 +67,4 @@ export const walletlink = new WalletLinkConnector({
   appLogoUrl:
     'https://mpng.pngfly.com/20181202/bex/kisspng-emoji-domain-unicorn-pin-badges-sticker-unicorn-tumblr-emoji-unicorn-iphoneemoji-5c046729264a77.5671679315437924251569.jpg'
 })
+ 

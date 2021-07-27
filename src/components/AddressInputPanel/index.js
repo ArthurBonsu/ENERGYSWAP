@@ -15,6 +15,7 @@ const { useWeb3React, useDebounce } =require ('../../hooks');
 //import { isAddress } from '../../utils'
 //import { useWeb3React, useDebounce } from '../../hooks'
 
+// INPUT PANEL DESGN
 const InputPanel = styled.div`
   ${({ theme }) => theme.flexColumnNoWrap}
   box-shadow: 0 4px 8px 0 ${({ theme }) => transparentize(0.95, theme.shadowColor)};
@@ -24,6 +25,7 @@ const InputPanel = styled.div`
   z-index: 1;
 `
 
+//ROW OF THE CONTRAINER DESIGN
 const ContainerRow = styled.div`
   display: flex;
   justify-content: center;
@@ -33,11 +35,11 @@ const ContainerRow = styled.div`
 
   background-color: ${({ theme }) => theme.inputBackground};
 `
-
+//INPUT CONTAINER
 const InputContainer = styled.div`
   flex: 1;
 `
-
+//LABEL ROW
 const LabelRow = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: center;
@@ -46,7 +48,7 @@ const LabelRow = styled.div`
   line-height: 1rem;
   padding: 0.75rem 1rem;
 `
-
+//LABEL CONTAINER
 const LabelContainer = styled.div`
   flex: 1 1 auto;
   width: 0;
@@ -54,13 +56,13 @@ const LabelContainer = styled.div`
   white-space: nowrap;
   text-overflow: ellipsis;
 `
-
+//DESIGNING INPUT ROW
 const InputRow = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: center;
   padding: 0.25rem 0.85rem 0.75rem;
 `
-
+// DESIGNING INPUT
 const Input = styled.input`
   font-size: 1rem;
   outline: none;
@@ -83,14 +85,17 @@ export default function AddressInputPanel({ title, initialInput = '', onChange =
 
   const { library } = useWeb3React()
 
+ // S0 THIS IS HOW YOU SET DATA USING USESTATE (INITIAL ADDRESS)
   const [input, setInput] = useState(initialInput.address ? initialInput.address : '')
 
   const debouncedInput = useDebounce(input, 150)
 
+ // WE SET DATA THIS WAY 
   const [data, setData] = useState({ address: undefined, name: undefined })
   const [error, setError] = useState(false)
 
   // keep data and errors in sync
+  //IT IS ACCESSED THIS WAY,= THE DATA.ADDRESS, THIS IS HOW IT IS DONE THROUGH USESTATE
   useEffect(() => {
     onChange({ address: data.address, name: data.name })
   }, [onChange, data.address, data.name])
@@ -159,6 +164,7 @@ export default function AddressInputPanel({ title, initialInput = '', onChange =
     }
   }, [debouncedInput, library, onChange, onError])
 
+ // WE HAVE AN INPUT EVENT HERE , SO WE CHECK THE INVENT OF SETDATA AND THE SUBSEQUCNE ERROR
   function onInput(event) {
     if (data.address !== undefined || data.name !== undefined) {
       setData({ address: undefined, name: undefined })
@@ -167,10 +173,12 @@ export default function AddressInputPanel({ title, initialInput = '', onChange =
       setError()
     }
     const input = event.target.value
+
+    // WE CHECK SUM THE INPUT
     const checksummedInput = isAddress(input)
     setInput(checksummedInput || input)
   }
-
+        
   return (
     <InputPanel>
       <ContainerRow error={input !== '' && error}>

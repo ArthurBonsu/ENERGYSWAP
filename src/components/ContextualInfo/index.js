@@ -4,7 +4,7 @@ const styled =require ('styled-components');
 
 const ReactGA =require ('react-ga');
 const { ReactComponent as Dropup } =require ('../../assets/images/dropup-blue.svg');
-const { ReactComponent as Dropdown } =require(x '../../assets/images/dropdown-blue.svg'
+const { ReactComponent as Dropdown } =require( '../../assets/images/dropdown-blue.svg');
 
 const PropTypes =require ('prop-types');
 const styled =require ('styled-components');
