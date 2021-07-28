@@ -163,7 +163,7 @@ ropsten:{
   compilers: {
     solc: {
      // version: "^0.5.5",
-    version: "0.8.3",
+    version: "^0.8.0",
       optimizer: {
         enabled: true,
         runs: 200
