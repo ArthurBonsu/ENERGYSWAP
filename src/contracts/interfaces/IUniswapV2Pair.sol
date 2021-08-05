@@ -15,7 +15,7 @@ interface IUniswapV2Pair {
     function transfer(address to, uint value) external returns (bool);
     function transferFrom(address from, address to, uint value) external returns (bool);
 
-    function DOMAIN_SEPARATOR() external view returns (bytes32);
+    function DOMAIN_SEPARATOR() external view override  returns (bytes32);
     function PERMIT_TYPEHASH() external pure returns (bytes32);
     function nonces(address owner) external view returns (uint);
 
@@ -32,7 +32,7 @@ interface IUniswapV2Pair {
         address indexed to
     );
     */
-    event Sync(uint112 reserve0, uint112 reserve1);
+   // event Sync(uint112 reserve0, uint112 reserve1);
 
     function MINIMUM_LIQUIDITY() external pure returns (uint);
     function factory() external view returns (address);
