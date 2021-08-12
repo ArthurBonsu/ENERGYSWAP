@@ -10,7 +10,7 @@ import "./interfaces/IERC20.sol";
 import "./interfaces/V1/IUniswapV1Factory.sol";
 import "./interfaces/V1/IUniswapV1Exchange.sol";
 
-contract UniswapV1Exchange is IERC20 {
+abstract contract UniswapV1Exchange is IERC20 {
 
   /***********************************|
   |        Variables && Events        |

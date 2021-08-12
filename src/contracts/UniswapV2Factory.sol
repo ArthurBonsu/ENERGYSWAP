@@ -8,7 +8,7 @@ contract UniswapV2Factory is IUniswapV2Factory {
     address public override feeToSetter;
 
     mapping(address => mapping(address => address)) public override getPair;
-    address[] public allPairs;
+    address[] public override allPairs;
 
     event PairCreated(address indexed token0, address indexed token1, address pair, uint);
 
@@ -16,7 +16,7 @@ contract UniswapV2Factory is IUniswapV2Factory {
         feeToSetter = _feeToSetter;
     }
        // LIST OF ALL THE PAIRS GIVEN OUT 
-    function allPairsLength() external view returns (uint) {
+    function allPairsLength() external override view returns (uint) {
         return allPairs.length;
     }
           // FOR MINTED TOKENS AND THE TOTAL SUPPLIED GIVEN OUT, 

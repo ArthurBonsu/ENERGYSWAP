@@ -1,8 +1,8 @@
 //pragma solidity ^0.5.5;
 pragma solidity >=0.4.16 <0.9.0;
 interface IUniswapV2Router01 {
-    function factory() external pure returns (address);
-    function WETH() external pure virtual override returns (address);
+    function factory() external view returns (address);
+    function WETH() external view virtual  returns (address);
 
     function addLiquidity(
         address tokenA,
@@ -13,7 +13,7 @@ interface IUniswapV2Router01 {
         uint amountBMin,
         address to,
         uint deadline
-    ) external override returns (uint amountA, uint amountB, uint liquidity);
+    ) external  returns (uint amountA, uint amountB, uint liquidity);
     function addLiquidityETH(
         address token,
         uint amountTokenDesired,
@@ -21,7 +21,7 @@ interface IUniswapV2Router01 {
         uint amountETHMin,
         address to,
         uint deadline
-    ) external override payable returns (uint amountToken, uint amountETH, uint liquidity);
+    ) external  payable returns (uint amountToken, uint amountETH, uint liquidity);
     function removeLiquidity(
         address tokenA,
         address tokenB,
@@ -87,9 +87,9 @@ interface IUniswapV2Router01 {
         payable
         returns (uint[] memory amounts);
 
-    function quote(uint amountA, uint reserveA, uint reserveB) external pure returns (uint amountB);
-    function getAmountOut(uint amountIn, uint reserveIn, uint reserveOut) external pure returns (uint amountOut);
-    function getAmountIn(uint amountOut, uint reserveIn, uint reserveOut) external pure returns (uint amountIn);
+    function quote(uint amountA, uint reserveA, uint reserveB) external view returns (uint amountB);
+    function getAmountOut(uint amountIn, uint reserveIn, uint reserveOut) external view returns (uint amountOut);
+    function getAmountIn(uint amountOut, uint reserveIn, uint reserveOut) external view returns (uint amountIn);
     function getAmountsOut(uint amountIn, address[] calldata path) external view returns (uint[] memory amounts);
     function getAmountsIn(uint amountOut, address[] calldata path) external view returns (uint[] memory amounts);
 }

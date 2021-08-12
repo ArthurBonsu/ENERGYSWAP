@@ -18,8 +18,8 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
   //  address public immutable override WETH;
 
    
-    address public   factory;
-    address public override   WETH;
+    address public override   factory;
+    address public  override WETH;
 
     modifier ensure(uint deadline) {
         require(deadline >= block.timestamp, 'UniswapV2Router: EXPIRED');
@@ -89,7 +89,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
         uint amountETHMin,
         address to,
         uint deadline
-    ) external  payable ensure(deadline) returns (uint amountToken, uint amountETH, uint liquidity) {
+    ) external override  payable ensure(deadline) returns (uint amountToken, uint amountETH, uint liquidity) {
         (amountToken, amountETH) = _addLiquidity(
             token,
             WETH,

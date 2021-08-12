@@ -126,10 +126,10 @@ interface IUniswap{
   // UniswapFactorymustbegiven here
 
 */
-  contract MyDefiProject is IERC20, IUniswapV2Callee, IWETH, IUniswapV2Router02, IUniswapV2Pair,IUniswapV2Library  {
+  abstract contract Uniswap is IERC20, IUniswapV2Callee, IWETH, IUniswapV2Router02, IUniswapV2Pair,IUniswapV2Library  {
       
-    address public factory;
-    //address public router;
+    address public override  (IUniswapV2Pair, IUniswapV2Router01) factory ;
+    //address public  router;
   
     //address public token0;
     //address public token1;
@@ -141,7 +141,7 @@ interface IUniswap{
    
     address public  router2;
     address public  router1;
-    address public WETH;
+    address public override WETH;
     address public token;
     address public pair;
     
@@ -329,4 +329,33 @@ function fullswapprocessandswaptokenforeth(uint amountOut, address[] memory path
   uniswap.removeLiquidity(token, ) }
 
     */
+     function approve(address spender, uint value) external override (IERC20,IUniswapV2Pair )  returns (bool);
+     function allowance(address owner, address spender) external override (IERC20,IUniswapV2Pair ) view returns (uint);
+     function balanceOf(address owner) external override (IERC20,IUniswapV2Pair)  view returns (uint);
+     function decimals() external view override ( IERC20,IUniswapV2Pair)  returns (uint256);
+      function getAmountIn(uint amountOut, uint reserveIn, uint reserveOut) external view  override  ( IUniswapV2Library,IUniswapV2Router01) returns (uint amountIn);
+        function getAmountOut(uint amountIn, uint reserveIn, uint reserveOut) external view override (IUniswapV2Library,IUniswapV2Router01)  returns (uint amountOut);
+         function name() external view override (IERC20,IUniswapV2Pair)  returns (bytes32);
+
+         function quote(uint amountA, uint reserveA, uint reserveB) external override (IUniswapV2Library,IUniswapV2Router01) view returns (uint amountB);
+         
+    function symbol() external override (IERC20,IUniswapV2Pair) view returns (bytes32);
+
+   function totalSupply() external override (IERC20,IUniswapV2Pair)  view returns (uint);
+
+    function transfer(address to, uint value) external override (IERC20, IUniswapV2Pair,IWETH) returns (bool);
+
+     function transferFrom(address from, address to, uint value) external override (IERC20, IUniswapV2Pair) returns (bool);
+
+
+
+
+
+
+
+
+
+
+
+    
     }
