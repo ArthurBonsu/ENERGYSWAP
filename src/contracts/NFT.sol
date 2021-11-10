@@ -10,6 +10,7 @@ pragma solidity >=0.4.16 <0.9.0;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721Full.sol";
 
+//Conversion of Energy Tokens Here
 abstract contract  NFT is ERC721Full, Ownable {
   address payable public _owner;
   mapping (uint => bool) public sold;
