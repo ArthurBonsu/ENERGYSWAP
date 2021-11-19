@@ -26,6 +26,7 @@ abstract contract  FullEnergyTokens is ERC721Full, Ownable {
   function mint(string memory _tokenURI, uint _price) public onlyOwner returns (bool) {
     
     //DIFFERENT FROM ERC20 , ERC721 IS RATHER INCREMENT 
+    // WE WILL BUILT THE NFTS FROM HERE
     // SO YOU DONT HAVE A SUPPLY OF LET'S SAY 200
     //YOU HAVE A SUPPLY OF LET' SAY  0 AND YOU INCREMENT TO LET'S SAY 1
     //TOTAL SUPPLY IS THEREFORE 1 AS THE TOKEN IS MINTED AND IDD
@@ -56,10 +57,10 @@ abstract contract  FullEnergyTokens is ERC721Full, Ownable {
   function _trade(uint _energyunittokensid) public payable  {
     
     // transfer from ERC721
-  	transferFrom(address(this), msg.sender, _id); //nft to user
+  	transferFrom(address(this), msg.sender, FullEnergyTokens.sol); //nft to user
 
         
   	_owner.transfer(msg.value); //eth to owner
-  	sold[_energyunittokensid] = true; //nft is sold
+  	sold[_energyunittokensid] = true; //energy tokens is sold
   }
 }
