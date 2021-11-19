@@ -11,14 +11,14 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721Full.sol";
 
 //Conversion of Energy Tokens Here
-abstract contract  NFT is ERC721Full, Ownable {
+abstract contract  FullEnergyTokens is ERC721Full, Ownable {
   address payable public _owner;
   mapping (uint => bool) public sold;
   mapping (uint => uint) public price;
 
   event Purchase(address owner, uint price, uint id, string uri);
    
-  constructor() ERC721Full("ArthurNFT", "ANFT")  public{
+  constructor() ERC721FullEnergyTokens("EnergyUnitTokens", "EUT")  public{
   	_owner = msg.sender;
   } 
   
@@ -29,37 +29,37 @@ abstract contract  NFT is ERC721Full, Ownable {
     // SO YOU DONT HAVE A SUPPLY OF LET'S SAY 200
     //YOU HAVE A SUPPLY OF LET' SAY  0 AND YOU INCREMENT TO LET'S SAY 1
     //TOTAL SUPPLY IS THEREFORE 1 AS THE TOKEN IS MINTED AND IDD
-    uint _tokenId = totalSupply() + 1;
+    uint _energytokenId = totalSupply() + 1;
    
     //set the price of the token id
-    price[_tokenId] = _price;
+    price[_energytokenId] = _price;
 
-    _mint(address(this), _tokenId);
-    _setTokenURI(_tokenId, _tokenURI);
+    _mint(address(this), _energytokenId);
+    _setTokenURI(_energytokenId, _tokenURI);
     
     return true;
   }
 
-  function buy(uint _id) public payable {
-    _validate(_id); //check req. for trade
-    _trade(_id); //swap nft for eth
-  //   string memory _thetokenURI = tokenURI(_id);
-    emit Purchase(msg.sender, price[_id], _id, ERC721Metadata.tokenURI(_id));
+  function buy(uint _energyunittokensid) public payable {
+    _validate(_energyunittokensid); //check req. for trade
+    _trade(_energyunittokensid); //swap nft for eth
+  //   string memory _thetokenURI = tokenURI(_energyunittokensid);
+    emit Purchase(msg.sender, price[_energyunittokensid], _energyunittokensid, ERC721Metadata.tokenURI(_energyunittokensid));
   }
 
-  function _validate(uint _id) public payable {
-  	require(ERC721Full._exists(_id), "Error, wrong Token id"); //not exists
-    require(!sold[_id], "Error, Token is sold"); //already sold
-    require(msg.value >= price[_id], "Error, Token costs more"); //costs more
+  function _validate(uint _energyunittokensid) public payable {
+  	require(ERC721Full._exists(_energyunittokensid), "Error, wrong Token id"); //not exists
+    require(!sold[_energyunittokensid], "Error, Token is sold"); //already sold
+    require(msg.value >= price[_energyunittokensid], "Error, Token costs more"); //costs more
   }
 
-  function _trade(uint _id) public payable  {
+  function _trade(uint _energyunittokensid) public payable  {
     
     // transfer from ERC721
   	transferFrom(address(this), msg.sender, _id); //nft to user
 
         
   	_owner.transfer(msg.value); //eth to owner
-  	sold[_id] = true; //nft is sold
+  	sold[_energyunittokensid] = true; //nft is sold
   }
 }
